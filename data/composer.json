@@ -1,0 +1,6 @@
+{
+  "name": "rscom",
+  "require": {
+    "zf1/zend-db": "1.12.11"
+  }
+}
