@@ -18,6 +18,31 @@ $data = $db->select()->from('wp_posts', [
     'content' => 'post_content'
 ])->where('post_type = ?', 'post')->query()->fetchAll();
 
+array_map(function($post) {
+    $filename = trim(strtolower($post['title']));
+    $filename = preg_replace('|[^\s\w\d]+|', '', $filename);
+    $filename = preg_replace('|\s+|', '-', $filename);
+
+    $date = explode(' ', $post['date']);
+
+    $title = preg_replace('|\:|', '', $post['title']);
+    $summary = explode(PHP_EOL, $post['content'])[0];
+
+    $content = '---
+layout: post
+title: '.$title.PHP_EOL.
+'author: Rodrigo Silveira
+---
+
+'.$summary.PHP_EOL.
+'
+## '.$title .PHP_EOL.
+'-----
+
+'.$post['content'];
+    file_put_contents(__DIR__ . '/../docs/_posts/'.implode('-', [$date[0], $filename]).'.md', $content);
+}, $data);
+
 //$data = array_map(function($post) use ($db) {
 //    $id = $post['id'];
 //    $revs = $db->select()->from('wp_posts', [
@@ -44,4 +69,4 @@ $data = $db->select()->from('wp_posts', [
 //    return $post;
 //}, $data);
 
-print_r($data);
+//print_r($data);
