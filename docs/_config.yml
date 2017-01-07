@@ -16,26 +16,26 @@ description: Software engineer from somewhere on Earth
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: agarwal.akshay.akshay8@gmail.com
+  email: webmaster@rodrigo-silveira.com
   facebook:
   flickr:
-  github: AkshayAgarwal007
+  github: formigone
   instagram:
   linkedin: akshay-agarwal-782018a4
   pinterest:
   rss: # just type anything here for a working RSS icon
-  twitter: 
-  stackoverflow: # your stackoverflow profile, e.g. "users/3807565/akshay"
-  youtube: # channel/<your_long_string> or user/<user-name>
+  twitter: poundinclude
+  stackoverflow: users/774907/rodrigo-silveira
+  youtube: channel/UCvM9fx2dX3BEsO85u_rSlzw
   googleplus: # anything in your profile username that comes after plus.google.com/
 
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
-disqus:
+disqus: rodrigo-silveira-js
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
+google_analytics: UA-15090706-1
 
 # Your website URL (e.g. http://akshayagarwal007.github.io)
 # Used for Sitemap.xml and your RSS feed
