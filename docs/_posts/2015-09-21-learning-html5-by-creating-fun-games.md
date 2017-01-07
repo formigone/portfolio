@@ -2,7 +2,6 @@
 layout: post
 title: Learning HTML5 by Creating Fun Games
 author: Rodrigo Silveira
-
 ---
 
 A few months ago I was invited to write a book. Yes, I was approached by a Packt representative asking if I was interested in putting together a book about writing HTML5 games. Fast forward some 300 pages later, and this is the final result: My first published book for HTML5 developers wanting to learn how to write awesome games, as well as for game developers wanting to learn HTML5.

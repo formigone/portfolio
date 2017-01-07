@@ -9,11 +9,7 @@ Yesterday I got to the chapter of my book where I was to write about CSS Shaders
 ## Custom CSS Filters with GLSL Shaders
 -----
 
-Yesterday I got to the chapter of my book where I was to write about CSS Shaders. Since up to that point I had only heard about them, I had to go out and so my research on it. Turns out they're not even called that anymore... Since the feature was merged with the CSS filters spec, they're all called just that now.
-
-<a href="http://rodrigo-silveira.com/wp-content/uploads/2013/04/wpid-victoriarender2.jpeg"><img title="victoriarender2.jpeg" class="alignnone size-full" alt="image" src="http://rodrigo-silveira.com/wp-content/uploads/2013/04/wpid-victoriarender2.jpeg" /></a> 
-
-
+<img title="victoriarender2.jpeg" alt="CSS Filters API" src="/images/blank.gif" data-echo="/content/uploads/2013/04/wpid-victoriarender2.jpeg" width="100%" /> 
 
 However, since Google Chrome's about://flags page refers to the feature as a shader, I think I'll continue to call them that.
 

@@ -4,12 +4,11 @@ title: Learn Google Web Toolkit Day #1
 author: Rodrigo Silveira
 ---
 
-<a href="http://rodrigo-silveira.com/learn-google-web-toolkit-gwt-tips-1/google-web-toolkit-rpc-app-engine/" rel="attachment wp-att-550"><img class="alignleft size-medium wp-image-550" title="google-web-toolkit-rpc-app-engine" src="http://rodrigo-silveira.com/wp-content/uploads/2012/12/google-web-toolkit-rpc-app-engine-300x243.png" alt="" width="300" height="243" /></a>As I was working on a Google Web Toolkit &amp; Google App Engine application that I'm doing as a means to get better at GAE and some more advanced GWT concepts (UiBinder, MVP design pattern, RPC, etc.) - at least advanced for me right now, I decided to log every new thing I learn, so that, 1) I will be able to remember them tomorrow, and 2) other can hopefully learn, since there seems to be very little [quality] documentation about GWT and GAE for beginners.
 
 ## Learn Google Web Toolkit Day #1
 -----
 
-<a href="http://rodrigo-silveira.com/learn-google-web-toolkit-gwt-tips-1/google-web-toolkit-rpc-app-engine/" rel="attachment wp-att-550"><img class="alignleft size-medium wp-image-550" title="google-web-toolkit-rpc-app-engine" src="http://rodrigo-silveira.com/wp-content/uploads/2012/12/google-web-toolkit-rpc-app-engine-300x243.png" alt="" width="300" height="243" /></a>As I was working on a Google Web Toolkit &amp; Google App Engine application that I'm doing as a means to get better at GAE and some more advanced GWT concepts (UiBinder, MVP design pattern, RPC, etc.) - at least advanced for me right now, I decided to log every new thing I learn, so that, 1) I will be able to remember them tomorrow, and 2) other can hopefully learn, since there seems to be very little [quality] documentation about GWT and GAE for beginners.
+<img title="google-web-toolkit-rpc-app-engine" src="/images/blank.gif" data-echo="/content/uploads/2012/12/google-web-toolkit-rpc-app-engine-300x243.png" alt="" width="300" height="243" /></a>As I was working on a Google Web Toolkit &amp; Google App Engine application that I'm doing as a means to get better at GAE and some more advanced GWT concepts (UiBinder, MVP design pattern, RPC, etc.) - at least advanced for me right now, I decided to log every new thing I learn, so that, 1) I will be able to remember them tomorrow, and 2) other can hopefully learn, since there seems to be very little [quality] documentation about GWT and GAE for beginners.
 
 Today, or, day #1, as I decided to call this first blog entry on this subject, I learned two things, which I'll call "tips" from now on, though I know they're not so much tips as they're like, bits of wisdom:
 
