@@ -42,6 +42,8 @@ In Zend Framework, the way you provide some basic configuration to your applicat
  1. Specify two database connections - one for CloudSQL and a local connection
  2. Specify any information for Google App Engine (and associated services) for convenience
 
+----
+
     [production]
     phpSettings.date.timezone = "America/Denver"
     phpSettings.display_startup_errors = 0
