@@ -16,4 +16,5 @@ The book covers the latest HTML5 features, including semantics HTML5 elements, J
 While this was a big challenge, I'm actually in the process of planning a few other volumes. The topics are somewhat spread out, but the focus is still web-related development - including game development.
 
 ## Edit
+
 Also checkout the follow up book I've written to this one: <a href="/multiplayer-game-development-with-html5">Multiplayer Game Development with HTML5</a>!
