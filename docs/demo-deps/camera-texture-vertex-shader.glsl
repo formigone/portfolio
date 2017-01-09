@@ -1,0 +1,1 @@
+attribute vec3 aVertexPosition;attribute vec2 aTextureCoord;uniform mat4 uMVMatrix;uniform mat4 uPMatrix;uniform mat4 uCameraMatrix;varying vec2 vTextureCoord;void main(void){    gl_Position = uPMatrix * uCameraMatrix * uMVMatrix * vec4(aVertexPosition, 1);    vTextureCoord = aTextureCoord;}
