@@ -2,6 +2,22 @@
    /* JEKYLL-mono-color */
 /***************************/
 
+.inline-img {
+	float: left;
+	margin-right: 20px;
+}
+
+@media only screen and (max-width: 640px) {
+	.inline-img {
+		float: none;
+		display: block;
+		width: 100%;
+	}
+}
+
+.entry a {
+	text-decoration: underline;
+}
 
 /* 
     *Title
