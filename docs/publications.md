@@ -14,6 +14,7 @@ After publishing a few demos and tutorials related to game development with Java
 Buy on: [Amazon](http://www.amazon.com/gp/product/1849696020/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1849696020&linkCode=as2&tag=rodrixar-20&linkId=BJ7KRMYOUXMSWVVN) or [Packt Publishing](https://www.packtpub.com/web-development/learn-html5-creating-fun-games)
 
 <div style="clear:both"></div>
+
 # Multiplayer Game Development with HTML5
 
 <img src="/content/uploads/2016/02/book-multiplayer-game-development-html5.png" class="inline-img" />

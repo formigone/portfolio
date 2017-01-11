@@ -6,6 +6,8 @@ permalink: /about/
 
 I am a web engineer fascinated with artificial intelligence and machine learning, specialized in building large back-end and front-end systems.
 
+<img src="/images/blank.gif" data-echo="/images/coding-session-across-the-sea.jpg" alt="This is the best way to write software. Trust me =)" width="100%" />
+
 # Open Source
 
 The following are open source projects I've contributed to, either as a main contributor, or projects I've committed code to as an outsider.
