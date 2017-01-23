@@ -13,12 +13,6 @@ module.exports = {
         loader: 'babel',
         query: {
           plugins: ['transform-es2015-spread'],
-          presets: [
-            'react',
-            'es2015',
-            'airbnb',
-            'stage-0',
-          ],
         },
       },
       {
