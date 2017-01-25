@@ -3,32 +3,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
 import * as Actions from '../actions';
-import Counter from '../components/Counter';
+import Grid from '../components/Grid';
 
-console.log('actions', Actions);
-
-const Mnist = ({ value, actions }) => {
-  let input = null;
-  return (
-    <div className="mnist">
-      <h1>MNIST</h1>
-      <Counter value={value} />
-      <p>Adder: <input ref={ref => input = ref} defaultValue="1" /></p>
-      <button onClick={() => {
-        console.log('click', input.value, actions);
-        actions.incBy(input.value)
-      }}>INC BY</button>
-    </div>
-  );
-};
+const Mnist = ({ grid }) => (
+  <div className="mnist">
+    <Grid cells={grid} />
+  </div>
+);
 
 Mnist.propTypes = {
-  value: PropTypes.number.isRequired,
-  actions: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  value: Number(state.counter) || 0,
+  grid: state.grid,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -20,3 +20,7 @@ export const genArray = (length, defValue = null) => {
 
   return arr;
 };
+
+export const genGrid = (width, height, value) => (
+  genArray(height, () => genArray(width, value))
+);

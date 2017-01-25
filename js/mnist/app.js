@@ -5,8 +5,11 @@ import { Provider } from 'react-redux'
 
 import Mnist from './containers/Mnist';
 import reducer from './reducers';
+import { genGrid } from './util';
 
-const store = createStore(reducer);
+const WIDTH = 28;
+const HEIGHT = 28;
+const store = createStore(reducer, { grid: genGrid(WIDTH, HEIGHT, 255)});
 
 render(
   <Provider store={store}>
