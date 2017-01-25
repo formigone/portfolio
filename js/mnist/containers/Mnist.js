@@ -5,13 +5,13 @@ import { connect } from 'react-redux'
 import * as Actions from '../actions';
 import Counter from '../components/Counter';
 
-console.log('actions', Actions)
+console.log('actions', Actions);
 
-const HelloWorld = ({ value, actions }) => {
+const Mnist = ({ value, actions }) => {
   let input = null;
   return (
-    <div className="hello-world">
-      <h1>Hello World</h1>
+    <div className="mnist">
+      <h1>MNIST</h1>
       <Counter value={value} />
       <p>Adder: <input ref={ref => input = ref} defaultValue="1" /></p>
       <button onClick={() => {
@@ -22,7 +22,7 @@ const HelloWorld = ({ value, actions }) => {
   );
 };
 
-HelloWorld.propTypes = {
+Mnist.propTypes = {
   value: PropTypes.number.isRequired,
   actions: PropTypes.object.isRequired,
 };
@@ -35,4 +35,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HelloWorld);
+export default connect(mapStateToProps, mapDispatchToProps)(Mnist);

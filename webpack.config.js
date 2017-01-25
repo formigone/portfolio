@@ -1,9 +1,12 @@
 module.exports = {
   devtool: 'source-map',
-  entry: './src/app.js',
+  entry: {
+    'hello-world': `${__dirname}/js/hello-world/app.js`,
+    mnist: `${__dirname}/js/mnist/app.js`,
+  },
   output: {
-    path: `${__dirname}/../docs/js`,
-    filename: 'hello-world.js'
+    path: `${__dirname}/docs/js`,
+    filename: '[name].js',
   },
   module: {
     loaders: [
@@ -17,7 +20,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader',
+        loader: 'style!css?modules&importLoaders=1',
       },
     ],
   },

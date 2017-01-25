@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 
+import css from './Counter.css';
+
 export const Counter = ({ value }) => (
-  <p>{ value }</p>
+  <p className={css.root}>{ value }</p>
 );
 
 Counter.propTypes = {
