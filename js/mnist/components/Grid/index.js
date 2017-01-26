@@ -2,12 +2,28 @@ import React, { PropTypes } from 'react'
 
 import css from './Grid.css';
 
-export const Grid = ({ cells }) => (
+let isMouseDown = false;
+
+export const Grid = ({ cells, plot }) => (
   <div className={css.root}>
     {cells.map((row, y) => (
       <p key={`row-${y}`}>
         {row.map((col, x) => (
-          <span key={`col-${x}`}>[{x}, {y}]</span>
+          <span key={`col-${x}`} style={{background: `rgb(${col}, ${col}, ${col})`}}
+                onMouseDown={() => (isMouseDown = true)} onMouseUp={() => (isMouseDown = false)}
+                onDoubleClick={() => {
+                  plot(x, y, 255);
+                  plot(x - 1, y, 255);
+                  plot(x, y - 1, 255);
+                  plot(x - 1, y - 1, 255);
+                  plot(x + 1, y - 1, 255);
+                  plot(x + 1, y, 255);
+                  plot(x, y + 1, 255);
+                  plot(x + 1, y + 1, 255);
+                  plot(x - 1, y + 1, 255);
+                }}
+                onMouseMove={() => (isMouseDown && plot(x, y, 0))}
+          />
         ))}
       </p>
     ))}
@@ -18,6 +34,7 @@ Grid.propTypes = {
   cells: PropTypes.arrayOf(
     PropTypes.arrayOf(PropTypes.number)
   ),
+  plot: PropTypes.func,
 };
 
 export default Grid;

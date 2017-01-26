@@ -1,5 +1,29 @@
 .root {
     background: #c00;
     padding: 10px;
-    margin: 10px;
+    margin: 10px auto;
+    width: 588px;
+}
+
+.root p, .root span {
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    height: 20px;
+}
+
+.root span {
+    width: 20px;
+    height: 20px;
+    border-left: 1px solid #333;
+    border-top: 1px solid #333;
+    display: inline-block;
+}
+
+.root p:first-child span {
+    border-top: 1px solid #fff;
+}
+
+.root p span:first-child {
+    border-left: 1px solid #fff;
 }

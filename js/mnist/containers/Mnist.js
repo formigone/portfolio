@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
 import * as Actions from '../actions';
 import Grid from '../components/Grid';
 
-const Mnist = ({ grid }) => (
+const Mnist = ({ grid, plot }) => (
   <div className="mnist">
-    <Grid cells={grid} />
+    <Grid cells={grid} plot={plot}/>
   </div>
 );
 
@@ -19,7 +18,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(Actions, dispatch),
+  plot: (x, y, value) => {
+    dispatch(Actions.plot(x, y, value));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Mnist);
