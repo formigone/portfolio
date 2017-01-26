@@ -9,7 +9,7 @@ import { genGrid } from './util';
 
 const WIDTH = 28;
 const HEIGHT = 28;
-const store = createStore(reducer, { grid: genGrid(WIDTH, HEIGHT, 255)});
+const store = createStore(reducer, { grid: genGrid(WIDTH, HEIGHT, 0)});
 
 render(
   <Provider store={store}>

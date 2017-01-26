@@ -9,20 +9,21 @@ export const Grid = ({ cells, plot }) => (
     {cells.map((row, y) => (
       <p key={`row-${y}`}>
         {row.map((col, x) => (
-          <span key={`col-${x}`} style={{background: `rgb(${col}, ${col}, ${col})`}}
+          <span key={`col-${x}`} className={col === 1 ? css.active : ''}
                 onMouseDown={() => (isMouseDown = true)} onMouseUp={() => (isMouseDown = false)}
                 onDoubleClick={() => {
-                  plot(x, y, 255);
-                  plot(x - 1, y, 255);
-                  plot(x, y - 1, 255);
-                  plot(x - 1, y - 1, 255);
-                  plot(x + 1, y - 1, 255);
-                  plot(x + 1, y, 255);
-                  plot(x, y + 1, 255);
-                  plot(x + 1, y + 1, 255);
-                  plot(x - 1, y + 1, 255);
+                  plot(x, y, 0);
+                  plot(x - 1, y, 0);
+                  plot(x, y - 1, 0);
+                  plot(x - 1, y - 1, 0);
+                  plot(x + 1, y - 1, 0);
+                  plot(x + 1, y, 0);
+                  plot(x, y + 1, 0);
+                  plot(x + 1, y + 1, 0);
+                  plot(x - 1, y + 1, 0);
                 }}
-                onMouseMove={() => (isMouseDown && plot(x, y, 0))}
+                onMouseMove={() => isMouseDown && plot(x, y, 1)}
+                onClick={() => plot(x, y, 1)}
           />
         ))}
       </p>
