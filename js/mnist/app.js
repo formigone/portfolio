@@ -7,13 +7,17 @@ import Mnist from './containers/Mnist';
 import reducer from './reducers';
 import { genGrid } from './util';
 
+import css from './app.css';
+
 const WIDTH = 28;
 const HEIGHT = 28;
-const store = createStore(reducer, { grid: genGrid(WIDTH, HEIGHT, 0)});
+const store = createStore(reducer, { grid: genGrid(WIDTH, HEIGHT, 0) });
 
 render(
-  <Provider store={store}>
-    <Mnist />
-  </Provider>,
+  <div className={css.root}>
+    <Provider store={store}>
+      <Mnist />
+    </Provider>
+  </div>,
   document.getElementById('mnist-container')
 );

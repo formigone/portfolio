@@ -5,12 +5,17 @@ import css from './Grid.css';
 let isMouseDown = false;
 
 export const Grid = ({ cells, plot }) => (
-  <div className={css.root}>
+  <table className={css.root}>
+    <tbody>
     {cells.map((row, y) => (
-      <p key={`row-${y}`}>
+      <tr key={`row-${y}`}>
         {row.map((col, x) => (
-          <span key={`col-${x}`} className={col === 1 ? css.active : ''}
-                onMouseDown={() => (isMouseDown = true)} onMouseUp={() => (isMouseDown = false)}
+          <td key={`col-${x}`} className={col === 1 ? css.active : ''}
+                onMouseDown={() => isMouseDown = true}
+                onMouseUp={() => {
+                  isMouseDown = false;
+                  console.log('TODO: make prediction')
+                }}
                 onDoubleClick={() => {
                   plot(x, y, 0);
                   plot(x - 1, y, 0);
@@ -26,9 +31,10 @@ export const Grid = ({ cells, plot }) => (
                 onClick={() => plot(x, y, 1)}
           />
         ))}
-      </p>
+      </tr>
     ))}
-  </div>
+    </tbody>
+  </table>
 );
 
 Grid.propTypes = {

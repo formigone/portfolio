@@ -1,35 +1,24 @@
 .root {
-    background: #c00;
-    padding: 10px;
-    margin: 10px auto;
-    width: 588px;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    border-spacing: 0;
 }
 
-.root p, .root span {
+.root tr, .root td {
     padding: 0;
     margin: 0;
     background: #fff;
-    height: 20px;
 }
 
-.root span {
-    width: 20px;
-    height: 20px;
-    border-left: 1px solid #eee;
-    border-top: 1px solid #eee;
-    display: inline-block;
+.root td {
+    width: 3.05%;
+    padding-top: 3.05%;
+    box-shadow: inset 0 0 1px 0 #ddd;
     transition: all 0.1s;
 }
 
-.root p:first-child span {
-    border-top: 1px solid #fff;
-}
-
-.root p span:first-child {
-    border-left: 1px solid #fff;
-}
-
-.root p span.active {
+.root td.active {
     box-shadow: inset 0 0 2px #000;
     background: #ccc;
 }
