@@ -3,32 +3,39 @@ import React, { PropTypes } from 'react'
 import css from './Grid.css';
 
 let isMouseDown = false;
+/** @type {HTMLTableElement} table */
+let table = null;
 
 export const Grid = ({ cells, plot }) => (
-  <table className={css.root}>
+  <table className={css.root} ref={el => table = el}>
     <tbody>
     {cells.map((row, y) => (
       <tr key={`row-${y}`}>
         {row.map((col, x) => (
           <td key={`col-${x}`} className={col === 1 ? css.active : ''}
-                onMouseDown={() => isMouseDown = true}
-                onMouseUp={() => {
-                  isMouseDown = false;
-                  console.log('TODO: make prediction')
-                }}
-                onDoubleClick={() => {
-                  plot(x, y, 0);
-                  plot(x - 1, y, 0);
-                  plot(x, y - 1, 0);
-                  plot(x - 1, y - 1, 0);
-                  plot(x + 1, y - 1, 0);
-                  plot(x + 1, y, 0);
-                  plot(x, y + 1, 0);
-                  plot(x + 1, y + 1, 0);
-                  plot(x - 1, y + 1, 0);
-                }}
-                onMouseMove={() => isMouseDown && plot(x, y, 1)}
-                onClick={() => plot(x, y, 1)}
+              onTouchMove={({ touches }) => {
+                const { clientX: x, clientY: y } = touches[0];
+                const { offsetWidth: width, offsetHeight: height } = table.querySelector('td');
+                plot(Math.floor(x / width), Math.floor(y / height), 1);
+              }}
+              onMouseDown={() => isMouseDown = true}
+              onMouseUp={() => {
+                isMouseDown = false;
+                console.log('TODO: make prediction')
+              }}
+              onDoubleClick={() => {
+                plot(x, y, 0);
+                plot(x - 1, y, 0);
+                plot(x, y - 1, 0);
+                plot(x - 1, y - 1, 0);
+                plot(x + 1, y - 1, 0);
+                plot(x + 1, y, 0);
+                plot(x, y + 1, 0);
+                plot(x + 1, y + 1, 0);
+                plot(x - 1, y + 1, 0);
+              }}
+              onMouseMove={() => isMouseDown && plot(x, y, 1)}
+              onClick={() => plot(x, y, 1)}
           />
         ))}
       </tr>
