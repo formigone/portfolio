@@ -5,9 +5,9 @@ import * as Actions from '../actions';
 import Grid from '../components/Grid';
 import Prediction from '../components/Prediction';
 
-const Mnist = ({ grid, plot, prediction }) => (
+const Mnist = ({ grid, plot, predict, prediction }) => (
   <div className="mnist">
-    <Grid cells={grid} plot={plot} />
+    <Grid cells={grid} plot={plot} predict={predict} />
     <Prediction {...prediction} />
   </div>
 );
@@ -17,12 +17,15 @@ Mnist.propTypes = {
 
 const mapStateToProps = (state) => ({
   grid: state.grid,
-  prediction: state.prediction || { value: '--', confidence: 100 },
+  prediction: state.prediction,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   plot: (x, y, value) => {
     dispatch(Actions.plot(x, y, value));
+  },
+  predict: (cells) => {
+    dispatch(Actions.predict(cells));
   },
 });
 

@@ -6,7 +6,7 @@ let isMouseDown = false;
 /** @type {HTMLTableElement} table */
 let table = null;
 
-export const Grid = ({ cells, plot }) => (
+export const Grid = ({ cells, plot, predict }) => (
   <table className={css.root} ref={el => table = el}>
     <tbody>
     {cells.map((row, y) => (
@@ -21,7 +21,9 @@ export const Grid = ({ cells, plot }) => (
               onMouseDown={() => isMouseDown = true}
               onMouseUp={() => {
                 isMouseDown = false;
-                console.log('TODO: make prediction')
+                setTimeout(() => {
+                  predict(cells);
+                }, 0);
               }}
               onDoubleClick={() => {
                 plot(x, y, 0);
@@ -33,6 +35,7 @@ export const Grid = ({ cells, plot }) => (
                 plot(x, y + 1, 0);
                 plot(x + 1, y + 1, 0);
                 plot(x - 1, y + 1, 0);
+                predict(cells);
               }}
               onMouseMove={() => isMouseDown && plot(x, y, 1)}
               onClick={() => plot(x, y, 1)}
@@ -49,6 +52,7 @@ Grid.propTypes = {
     PropTypes.arrayOf(PropTypes.number)
   ),
   plot: PropTypes.func,
+  predict: PropTypes.func,
 };
 
 export default Grid;
