@@ -16,6 +16,11 @@ This toy application feeds the pixel data for some input image to a linear regre
     .lin-reg-canvas { background: #fff; width: 50%; image-rendering: pixelated; }
     #painting-container p { font-family: monospace; }
     #painting-container button { margin: 10px auto; }
+    @media only screen and (max-width: 600px) {
+        .lin-reg-canvas {
+            width: 100%;
+        }
+    }
 </style>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="/js/linear_regression_painting.bundle.js"></script>
