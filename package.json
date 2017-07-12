@@ -5,6 +5,7 @@
   "scripts": {
     "build": "webpack -p --define process.env.NODE_ENV=production --progress --colors",
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base js/public --hot --inline --progress --colors",
+    "jekyll": "bundle exec jekyll serve",
     "test-single": "./node_modules/mocha/bin/mocha --require babel-core/register js/$T/**/**.spec.js",
     "test": "./node_modules/mocha/bin/mocha --require babel-core/register js/**/**/**.spec.js"
   },
