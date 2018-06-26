@@ -1,40 +1,28 @@
 ---
 layout: page
-title: About me
+title: A brief history of Rodrigo Silveira
 permalink: /about/
 ---
 
-I am a web engineer fascinated with artificial intelligence and machine learning, specialized in building large back-end and front-end systems.
+I was born building complex HTML designs using tables. With time, I learned vanilla JavaScript, and later got addicted to jQuery. Soon I found my way into the backend of the web stack through PHP and MySQL.
 
-<img src="/images/blank.gif" data-echo="/images/coding-session-across-the-sea.jpg" alt="This is the best way to write software. Trust me =)" width="100%" />
+During my early years as a web developer with PHP, I picked up Java from writing front-end <em>transpiled</em> JavaScript apps with Google's GWT. What an amazing experience this was. As an extension of that, I kept working with Java developing native Android applications.
 
-# Open Source
+Because of my passion for, and curiosity of technology, I started to focus my career on the data science path. Today I work on data and business intelligence, where I make sense of big data, and develop predictive machine learning models that add value to the business and improve the experience of our users.
 
-The following are open source projects I've contributed to, either as a main contributor, or projects I've committed code to as an outsider.
+<img src="/images/blank.gif" data-echo="/images/rodrigo-minority-report-meme.jpg" alt="This is the best way to write software. Trust me =)" width="100%" />
 
-## My own projects
+## Social Media
 
-**BigBrother.js** – visual user session tracking – mouse movement and scrolling recording and playback
-[https://github.com/formigone/big-brother-js](https://github.com/formigone/big-brother-js)
+See more of my work or get in touch with me through the following sites:
 
-**PHP Chain** – a thin abstraction over PHP arrays to help you easily chain array transformation functions
-[https://github.com/formigone/php-chain](https://github.com/formigone/php-chain)
-
-**HTML5 Stock Market Simulation** – a HTML5-based stock market simulation in PHP using WebSockets (written in 2011 implementing WebSocket Draft 75 and Draft 76)
-[https://github.com/formigone/html5-stock-market-simulation](https://github.com/formigone/html5-stock-market-simulation)
-
-## Contributions to other projects
-
-**Slim Framework** – my first contribution to an open source project. Minor, short, and sweet.
-[https://github.com/slimphp/Slim](https://github.com/slimphp/Slim)
-
-## Experience
-
-**Tag soup for the soul** – PHP 5, MySQL, MongoDB, Doctrine ORM, JavaScript, React.js, Angular.js, Node.js, Closure library, Backbone.js, THREE.js, Google Web Toolkit (GWT), jQuery, Zend Framework, CodeIgniter, Slim framework, CakePHP, WordPress, Webpack, Gulp, Grunt, HTML5, CSS3, Git, GitHub, Bootstrap, Web Design, TDD, MVC, FLUX, REST API, Google APIs, Agile, Scrum, Amazon Web Services, Google App Engine, Google Cloud Platform, Beanstalk, WebGL, Java, Java Servlets, native Android development.
+ * <a href="https://github.com/formigone">GitHub: formigone</a>
+ * <a href="https://www.kaggle.com/formigone">Kaggle: formigone</a>
+ * <a href="https://www.linkedin.com/in/rodrigo0silveira">LinkedIn: rodrigo0silveira</a>
 
 ## Goals
 
-My long term goal is to completely master machine learning techniques, and use it to improve lives. I also plan on using the deep knowledge and skills I’ve acquired over the years on web development and native Android development going forward.
+My long term goal is to completely master and apply machine learning techniques, and use it to develop intelligent software improve lives.
 
 ## Education
 
