@@ -4,27 +4,25 @@
       link: /
     - name: Portfolio
       link: /portfolio/
+    - name: Publications
+      link: /publications/
     - name: Blog
       link: /blog/
-    - name: About
-      link: /about/
-    - name: Contact
-      link: /contact/
 - title: Social
   links:
-    - name: Facebook
-      link: https://facebook.com/cloudcannon/
-      social_icon: Facebook
+    - name: Github
+      link: https://github.com/formigone
+      social_icon: Github
       new_window: true
-    - name: Twitter
-      link: https://twitter.com/cloudcannon/
-      social_icon: Twitter
+    - name: StackOverflow
+      link: https://stackoverflow.com/users/774907/rodrigo-silveira
+      social_icon: StackOverflow
       new_window: true
-    - name: Instagram
-      link: https://instagram.com/
-      social_icon: Instagram
+    - name: YouTube
+      link: https://www.youtube.com/channel/UCvM9fx2dX3BEsO85u_rSlzw
+      social_icon: YouTube
       new_window: true
     - name: LinkedIn
-      link: https://nz.linkedin.com/company/cloud-cannon
+      link: https://www.linkedin.com/in/rodrigo0silveira
       social_icon: LinkedIn
       new_window: true

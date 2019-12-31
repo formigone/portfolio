@@ -1,7 +1,7 @@
 title:
 url: "http://rodrigo-silveira.com"
 baseurl:
-google_analytics_key:
+google_analytics_key: UA-15090706-1
 google_maps_javascript_api_key:
 disqus_shortname:
 
@@ -10,9 +10,9 @@ description: Rodrigo Silveira
 
 # Author details for the jekyll-seo-tag gem
 author:
-  name:
+  name: Rodrigo Silveira
   email:
-  twitter: # twitter username without the @ symbol
+  twitter: poundinclude
 
 # Social details for the jekyll-seo-tag gem
 social:

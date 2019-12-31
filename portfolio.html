@@ -1,26 +1,330 @@
 ---
 title: Portfolio
-heading: Our Work
-subtitle: See some of our proud customers with exemplary results.
+heading: Portfolio
+subtitle: The following are projects I developed on my own as proof of concepts or because my curiosity would allow me to sleep, part of self-education coursework, or as freelance gigs.
 ---
 
 <section class="diagonal patterned">
-	<div class="container">
-	    <p class="editor-link" style="text-align: center;"><a href="cloudcannon:collections/_clients/" class="btn"><strong>&#9998;</strong> Manage Clients</a></p>
-		<ul class="image-grid">
-			{% for client in site.clients %}
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Blood Cholesterol Predictor (2018)</h3>
+			<p class="editable">From a private dataset of images of blood samples with their accompanying cholesterol (in mg/dL), I developed several machine learning models that predicted one’s cholesterol from a picture of the blood sample. The best model ended up being a convolutional neural network using Google’s Inception 2 architecture.</p>
+			<ul class="image-grid">
 				<li>
-					<a href="{{ site.baseurl }}{{ client.url }}">
-						<img src="{% include relative-src.html src=client.image_path %}" alt="{{ person.name }}">
-						<div class="details">
-							<div class="name">{{ client.name }}</div>
-							<div class="position">{{ client.subtitle }}</div>
-						</div>
-					</a>
+					<img src="/images/cholesterol-predictor.png">
 				</li>
-			{% endfor %}
-			<li class="filler"></li>
-			<li class="filler"></li>
-		</ul>
+			</ul>
+			<p class="editable">The selected trained model was deployed to a server where it ran on a standalone Python process, fronted by an Apache API endpoint. I also developed an Android and iOS application that allows the user to use the phone’s camera to photograph their blood sample, use the API described, and get an accurate prediction within 1 second.</p>
+			<p class="editable"><strong>Details</strong></p>
+			<ul style="color: #fff">
+				<li>Used a private dataset.</li>
+				<li>Developed custom tools in JavaScript and PHP to build a clean, labeled dataset from raw images.</li>
+				<li>Developed, trained, debugged, and optimized multiple deep learning models.</li>
+				<li>Deployed the model to production.</li>
+				<li>Developed a backend web API that collects users usage of the app to continue to train the model.</li>
+			</ul>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul style="color: #fff">
+				<li>TensorFlow</li>
+				<li>Python</li>
+				<li>PHP</li>
+				<li>Apache</li>
+				<li>React.js</li>
+				<li>React Native</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">TensorFlow Speech Recognition Challenge (2017)</h3>
+			<p class="editable">This was my first Kaggle competition, which I was surprised to place 222nd of 1315 participants (top 17%). The competition was sponsored by Google Brain, and consisted of having to train a machine learning model using a dataset of 64 thoursand 1 second audio files, each containing one of several commands (such as “up”, “down”, “yes”, “no”, etc.).</p>
+			<p class="editable">Once trained, the model would be given thousands of new 1 second voice commands, and it would need to predict which, if any, of the commands the sound contained.</p>
+			<ul class="image-grid">
+				<li>
+					<img src="/images/TensorFlow_Speech_Recognition_Challenge___Kaggle.png">
+				</li>
+			</ul>
+			<p class="editable"><a href="https://www.kaggle.com/c/tensorflow-speech-recognition-challenge" target="_blank">View on Kaggle.com</a></p>
+			<p class="editable"><strong>Details</strong></p>
+			<ul>
+				<li>First Kaggle competition.</li>
+				<li>Best rank was 85th.</li>
+				<li>Participated alone.</li>
+				<li>Best model was a convolutional neural network, taking 3D spectrogram as inputs.</li>
+			</ul>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>TensorFlow</li>
+				<li>Python</li>
+				<li>Numpy</li>
+				<li>Pandas</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate" style="background: #fff">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">MNIST App (2017)</h3>
+			<p class="editable">A personal project that applies machine learning proficiency. The app allows users to draw a number on the phone, and using the raw pixels of this drawing as input, the model predicts with high accuracy what the number is.</p>
+			<ul class="image-grid">
+				<li>
+					<img src="/images/MNIST_App_-_Apps_on_Google_Play.png">
+				</li>
+			</ul>
+			<p class="editable"><a href="https://play.google.com/store/apps/details?id=mnist.ai.formigone.com.mnistapp&hl=en_US" target="_blank">Download on Google Play</a></p>
+			<p class="editable"><strong>Details</strong></p>
+			<ul>
+				<li>Used the existing MNIST dataset.</li>
+				<li>Applyed data augmentation techniques to increase dataset.</li>
+				<li>Developed, trained, debugged, and optimized multiple deep learning models.</li>
+				<li>Deployed the best model to TensorFlow mobile.</li>
+				<li>Developed a backend web API that collects users usage of the app to continue to train the model.</li>
+				<li>Over 20,000 observations have been collected to date from users interacting with the app.</li>
+			</ul>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>TensorFlow</li>
+				<li>Python</li>
+				<li>Apache</li>
+				<li>Node.js</li>
+				<li>Express</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Dfrag (2017)</h3>
+			<p class="editable">A very minimalist JavaScript framework/abstraction to simplify creating DOM structures in a declarative way. The purpose of this was to simplify my own creation of JavaScript demos and prototypes without having to write a lot of code, and without having to setup React.js, Webpack, Babel, and all sorts of additional tooling just to render simple DOM elements on the page.</p>
+			<ul class="image-grid">
+				<li>
+					<img src="/images/formigone_dfrag__A_minimalist_functional_abstraction_to_create_DOM_fragments.png">
+				</li>
+			</ul>
+			<p class="editable"><a href="https://github.com/formigone/dfrag" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Details</strong></p>
+			<ul>
+				<li>Dead-simple API</li>
+				<li>Only 787 bytes uncompressed</li>
+			</ul>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>Vanilla JavaScript</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate" style="background: #fff">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">php-config (2016)</h3>
+			<p class="editable">A minimalist and loose port of node-config, which is a simple way to create environment specific configuration files. At run time, the configuration files from the various environemnts (local, development, stage, production, etc.) get merged in such a way that you can reuse configurations across environemnts, rather than copying and duplicating them.</p>
+			<p class="editable">The reason for this project was to simplify configuration management in PHP projects, and to bring to PHP a very elegant solution that the Node package that this project mimics solved.</p>
+			<ul class="image-grid">
+				<li>
+					<img src="/images/formigone_php-config__A_loose_port_of_node-config.png">
+				</li>
+			</ul>
+			<p class="editable"><a href="https://github.com/formigone/php-config" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>PHP</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Google’s Dev Art (2014)</h3>
+			<p class="editable">Another competition I entered for fun. DevArt was a Google sponsored initiative where developers and artists were to develop art with code. The winner(s) would be given some cash grant to develop their idea more fully, and the final project would be featured in some museum somewhere in the world. Again, my intent was mostly to take place in this, learn, and have fun.</p>
+			<p class="editable">My project was artsy rendition of Conway’s game of life, where the board was rendered by an image input by the user. Each generation of the game was rendered atop the previous one, but with some level of blending. The final output was intended to give the appearance of bacteria growing on a petri dish.</p>
+			<ul class="image-grid">
+				<li>
+					<img src="/images/devart-screenshot.png">
+				</li>
+			</ul>
+			<p class="editable"><a href="https://devart.withgoogle.com/#/project/17886819?q=formigone" target="_blank">View on DevArt</a></p>
+			<p class="editable"><a href="https://github.com/formigone/devart-template" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Details</strong></p>
+			<ul>
+				<li>Project hosted on the legacy Google App Engine.</li>
+				<li>Weird, creepy idea, but from an art standpoint, looked pretty cool.</li>
+			</ul>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>Google Closure Tools</li>
+				<li>Google App Engine</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate" style="background: #fff">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">BigBrother.js (2014)</h3>
+			<p class="editable">I wrote this as a prototype to allow analyst to record a user’s interaction with a page, then play it back to watch their behavior, or programmatically aggregate data across multiple users and multiple sessions.</p>
+			<ul class="image-grid">
+				<li>
+					<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/6-hdc5aUHcI?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></div>
+				</li>
+			</ul>
+			<p class="editable"><a href="https://github.com/formigone/big-brother-js" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>Vanilla JavaScript
+					<ul>
+						<li>Thin client library that binds to the DOM and tracks the user’s interactions with the page, including mouse movement, clicks, keyboard events, etc.</li>
+						<li>A simple player component that allows you to replay a recorded user session.</li>
+					</ul>
+				</li>
+				<li>PHP
+					<ul>
+						<li>Thin API endpoint that received input from the client library and persisted each session’s recordings.</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">php-chain (2013)</h3>
+			<p class="editable">A thin abstraction over PHP’s native arrays to help you easily chain array transformation functions. The motivation for writing this library was because PHP’s array functions are ridiculous - APIs are not consistent, and you cannot chain or compose the functions. Performing back to back transformation opperations on arrays can be very verbose.</p>
+			<ul class="image-grid">
+				<li>
+					<img src="/images/formigone_php-chain__A_thin_abstraction_over_PHP_arrays_to_help_you_easily_chain_array_transformation_functions.png">
+				</li>
+			</ul>
+			<p class="editable"><a href="https://github.com/formigone/php-chain" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>PHP</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate" style="background: #fff">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Tupacsum (2013)</h3>
+			<p class="editable">A Lorem Ipsum generator for the web designer that keeps it real. This was a fun toy project that I wrote during lunch one day to generate real-looking text to fill up designs or UI prototypes. The text content comes from the lyrics of various songs by Tupac Shakur.</p>
+			<ul class="image-grid">
+				<li>
+					<img src="/images/tupacsum-ipsum.jpg">
+				</li>
+			</ul>
+			<p class="editable"><a href="https://chrome.google.com/webstore/detail/tupacsum/dokiogadbpnilohbdnhahpoeebljielo?utm_source=chrome-ntp-icon" target="_blank">View on Chrome Web Store</a></p>
+			<p class="editable"><a href="https://github.com/formigone/tupacsum" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>JavaScript</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">GWT Game of Life (2013)</h3>
+			<p class="editable">This was probably my first project using Google Web Toolkit, which was once a great and promising way to write performant JavaScript applications using Java. As the name implies, the application was an implementation of Conway’s game of life, rendered on an HTML5 canvas.</p>
+			<p class="editable"><a href="https://github.com/formigone/gwt-game-of-life" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>Java</li>
+				<li>Google Web Toolkit (GWT)</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate" style="background: #fff">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">jQuery plugin: syntax highlighting (2012)</h3>
+			<p class="editable">During a phone interview with a developer from Disney, I was asked if I had ever written a jQuery plugin. Since I had not yet done so, I decided to go home and write something so that I could answer positively the next time I was asked about jQuery.</p>
+			<p class="editable">This plugin looks for DOM elements containing a configurable className, then replaces that element’s contents (assuming it is source code) with extra DOM elements wrapping certain tokens parsed from the element, styling it such that it would render as highlighted source code.</p>
+			<p class="editable"><a href="https://github.com/formigone/rokkocode" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>JavaScript</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">HTML5 Stock Market Simulation (2011)</h3>
+			<p class="editable">An HTML5-based stock market simulation in PHP using WebSockets (implementing WebSocket Draft 75 and Draft 76), as well as a client app that interacts with the WebSockets server. An unbounded amount of users are allowed to connect to the app and buy/sell stocks.</p>
+			<ul class="image-grid">
+				<li>
+					<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/oJxWhmt5m-o?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></div>
+				</li>
+			</ul>
+			<p class="editable"><a href="https://github.com/formigone/html5-stock-market-simulation" target="_blank">View on GitHub</a></p>
+			<p class="editable"><strong>Technologies</strong></p>
+			<ul>
+				<li>PHP
+					<ul>
+						<li>A manual implementation of the WebSockets protocol (Drafts 75 and 76 - now outdated by many years).</li>
+						<li>A server application that made use of the WebSockets server that handled the stock market simulation.</li>
+					</ul>
+				</li>
+				<li>JavaScript
+					<ul>
+						<li>A vanilla ECMAScript 5 application that handles the client-side logic and presentation of this stock market simulation.</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="hero diagonal">
+	<div class="container">
+		<h2 class="editable">Contributions to open-source projects</h2>
+	</div>
+</section>
+
+<section class="diagonal patterned">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">TensorFlow (2018)</h3>
+			<p class="editable">After discussing with the good folks at <a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/discuss" target="_blank">TensorFlow’s official forum</a>, I found a way to make the <a href="https://www.tensorflow.org/api_docs/python/tf/nn/batch_normalization" target="_blank">batch normalization component</a> easier to use correctly. The result of my research was my first contribution to a major open-source project.</p>
+
+			<ul class="image-grid">
+				<li>
+					<img src="/images/tensorflow-1.8.0-contributors.png">
+				</li>
+			</ul>
+			<p class="editable"><a href="https://github.com/tensorflow/tensorflow/releases/tag/v1.8.0-rc1" target="_blank">https://github.com/tensorflow/tensorflow/releases/tag/v1.8.0-rc1</a></p>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Slim Framework (2014)</h3>
+			<p class="editable">My first contribution to an open source project. Minor, short, and sweet.</p>
+
+			<p class="editable"><a href="https://github.com/slimphp/Slim" target="_blank">https://github.com/slimphp/Slim</a></p>
+		</div>
 	</div>
 </section>
