@@ -1,0 +1,83 @@
+---
+title: Rodrigo Silveira
+---
+
+<section class="hero diagonal">
+	<div class="container">
+		<h2 class="editable">Hybrid Software Engineer/Data Scientist</h2>
+		<p class="subtext editable">I was born and raised a <strong>Software Engineer</strong> spending most of my career as a full-stack web developer and Android app developer, but have since converted into a <strong>Data Scientist</strong> slash <strong>Machine Learning Engineer</strong>.</strong></p>
+	</div>
+</section>
+
+<section class="diagonal patterned">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Skills and Expertise</h3>
+			<p class="editable">Aside from the languages and technologies below, I have deep experience with standard software development technologies and methodologies such as scrum, git, test-driven development, continuous integration, distributed systems, AWS (Amazon Web Services), GCP (Google Cloud Platform), object-oriented design and analysis, DevOps, Docker.</p>
+		</div>
+	</div>
+
+	<div class="container halves">
+		<div>
+			<h2 class="editable">Data Science</h2>
+			<ul style="color: #fefefe">
+				<li>Python</li>
+				<li>TensorFlow</li>
+				<li>Pandas</li>
+				<li>Apache Airflow</li>
+				<li>Luigi</li>
+				<li>Jupyter Notebook</li>
+			</ul>
+		</div>
+		<div>
+			<h2 class="editable">Backend</h2>
+			<ul style="color: #fefefe">
+				<li>Python</li>
+				<li>PHP</li>
+				<li>Node.js</li>
+				<li>REST</li>
+				<li>GraphQL</li>
+				<li>Redis</li>
+			</ul>
+		</div>
+		<div>
+			<h2 class="editable">Frontend</h2>
+			<ul style="color: #fefefe">
+				<li>JavaScript</li>
+				<li>HTML5</li>
+				<li>CSS</li>
+				<li>React</li>
+				<li>Angular</li>
+				<li>Google Web Toolkit</li>
+			</ul>
+		</div>
+		<div>
+			<h2 class="editable">Database</h2>
+			<ul style="color: #fefefe">
+				<li>MySQL</li>
+				<li>MongoDB</li>
+				<li>DynamoDB</li>
+				<li>BigQuery</li>
+				<li>Google Datastore</li>
+				<li>ElasticSearch</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="diagonal alternate">
+	<div class="container halves">
+		<div>
+			<h3 class="editable">Some of our work</h3>
+			<p class="editable">We take pride in our previous work and our happy customers. We cater to any sector to boost business and increase exposure.</p>
+			<p class="editable"><a href="{{ site.baseurl }}/portfolio/">View Full Portfolio &rarr;</a></p>
+		</div>
+		<div>
+			<ul class="image-grid">
+				{% for client in site.clients limit: 4 %}
+					<li><a href="{{ site.baseurl }}{{ client.url }}"><img src="{% include relative-src.html src=client.image_path %}"></a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</section>
