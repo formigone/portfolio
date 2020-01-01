@@ -60,7 +60,7 @@
 						<li>
 							<h2>{{ site.data.company.quote_title }}</h2>
 						</li>
-						<li>{{ site.data.company.description }}</li>
+						<li id="quoteContainer">Quidquid latine dictum, altum videtur.</li>
 						<li><a href="{{ site.baseurl }}/feed.xml">{% include social-icon.html icon="RSS" %} Subscribe with RSS</a></li>
 					</ul>
 				</div>
@@ -81,6 +81,40 @@
 				document.body.classList.toggle("nav-open");
 				return false;
 			};
+		</script>
+
+		<script>
+			(function() {
+				const quotes = [
+						['Do it. Do it right. Do it right now.', 'Spencer W. Kimball'],
+						['Aegroto dum anima est, spes est.', ''],
+						['Aeque pars ligni curvi ac recti valet igni.', ''],
+						['Diem vesper commendat.', ''],
+						['Dii facientes adiuvant.', ''],
+						['Ex nihilo nihil fit.', ''],
+						['Manus manum lavat.', ''],
+						['Vincit omnia veritas.', ''],
+						['The best time to plant a tree was 20 years ago. The second best time is now.', 'Chinese Proverb'],
+						['Nothing is less productive than to make more efficient what should not be done at all.', 'Peter Drucker'],
+						['Start where you are. Use what you have. Do what you can.', 'Arthur Ashe'],
+						['The secret of getting ahead is getting started.', 'Mark Twain'],
+						['There is no chance, no fate, no destiny that can circumvent or hinder or control the firm resolve of a determined soul.', 'Ella Wheeler Wilcox'],
+						['I find that the harder I work, the more luck I seem to have.', 'Thomas Jefferson'],
+						['Don\'t wish it were easier; wish you were better.', 'Jim Rohn'],
+						['Success is walking from failure to failure with no loss of enthusiasm', 'Winston Churchill'],
+						['All progress takes place outside the comfort zone.', 'Michael John Bobak'],
+				];
+				const quote = quotes[Math.random() * quotes.length | 0];
+				const el = document.querySelector('#quoteContainer');
+
+				if (el) {
+					if (quote[1]) {
+						quote[1] = `~${quote[1]}`;
+					}
+
+					el.textContent = `"${quote[0]}" ${quote[1]}`;
+				}
+			}());
 		</script>
 	</body>
 </html>
