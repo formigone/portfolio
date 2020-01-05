@@ -107,10 +107,10 @@
       label.textContent = ` Fitness: ${Number.parseInt(population[0].totalFitness)}; Generation: ${i}`;
       setTimeout(() => {
         step(i + 1, total);
-      }, 10);
+      }, 100);
     }
 
-    step(0, 300);
+    step(0, 5000);
   }
 
   function crossover(population) {
