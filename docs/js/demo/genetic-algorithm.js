@@ -60,7 +60,7 @@
    * @param {Array<Array<number, number>>}target
    * @param {number} populationSize
    */
-  function start(target, populationSize = 10000) {
+  function start(target, populationSize = 5000) {
     // let x = 100, y = canvas.height / 2;
     // for (let i = 0; i < 10; i += 1) {
     //   let pt = pointFrom(x, y, pts[i][1], pts[i][0]);
