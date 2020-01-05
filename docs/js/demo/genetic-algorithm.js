@@ -121,7 +121,7 @@
 
       const next = population[i + 1];
       instance.forEach((row, j) => {
-        if (j % 2 === 0) {
+        if (j > instance.length / 2) {
           population[i][j] = next[j];
         }
 
