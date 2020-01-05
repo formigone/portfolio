@@ -60,7 +60,7 @@
    * @param {Array<Array<number, number>>}target
    * @param {number} populationSize
    */
-  function start(target, populationSize = 5000) {
+  function start(target, populationSize = 10000) {
     // let x = 100, y = canvas.height / 2;
     // for (let i = 0; i < 10; i += 1) {
     //   let pt = pointFrom(x, y, pts[i][1], pts[i][0]);
@@ -96,10 +96,10 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       plotLineGroup(Y, ctx, { strokeStyle: '#84ccb3', lineWidth: 25, lineCap: 'round', miterLimit: 100 });
       population.forEach((instance, j) => {
-        if (j > 25) {
+        if (j > 20) {
           return;
         }
-        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(10, 10, 10, ${1 - j / 25})`, lineWidth: 5, lineCap: 'round', miterLimit: 100 });
+        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(10, 10, 10, ${1 - j / 20})`, lineWidth: 5, lineCap: 'round', miterLimit: 100 });
       });
 
       crossover(population);
@@ -107,7 +107,7 @@
       label.textContent = ` Fitness: ${Number.parseInt(population[0].totalFitness)}; Generation: ${i}`;
       setTimeout(() => {
         step(i + 1, total);
-      }, 100);
+      }, 10);
     }
 
     step(0, 5000);
@@ -121,16 +121,17 @@
 
       const next = population[i + 1];
       instance.forEach((row, j) => {
-        if (j > instance.length / 2) {
+        // if (j > instance.length / 2) {
+        if (j % 2 === 0) {
           population[i][j] = next[j];
         }
 
-        if (Math.random() > 0.995) {
-          instance[j].distance = (instance[j].distance + 1) % 500;
+        if (Math.random() > 0.99) {
+          population[i][j].distance = (instance[j].distance + 1) % 5000;
         }
 
-        if (Math.random() > 0.995) {
-          instance[j].angle = (instance[j].angle + 1) % 360;
+        if (Math.random() > 0.99) {
+          population[i][j].angle = (instance[j].angle + 1) % 360;
         }
       });
     });
@@ -163,8 +164,8 @@
   function initPopulation(populationSize, instanceSize) {
     return Array.apply(null, new Array(populationSize)).map(() => {
       return Array.apply(null, new Array(instanceSize)).map(() => ({
-        distance: Number.parseInt(Math.random() * 300),
-        angle: Number.parseInt(Math.random() * 360),
+        distance: Number.parseInt(Math.random() * 150 - 75),
+        angle: Number.parseInt(Math.random() * 180 - 90),
         fitness: null,
       }));
     });
