@@ -100,16 +100,36 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       plotLineGroup(Y, ctx, { strokeStyle: '#84ccb3', lineWidth: 25, lineCap: 'round', miterLimit: 100 });
       population.slice(population.length - 20).forEach((instance, j) => {
-        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(150, 120, 120, ${j / 20 - 0.45})`, lineWidth: 45, lineCap: 'round', miterLimit: 100 });
+        plotLineGroup(instance.map((row) => row.pt), ctx, {
+          strokeStyle: `rgba(150, 120, 120, ${j / 20 - 0.45})`,
+          lineWidth: 45,
+          lineCap: 'round',
+          miterLimit: 100
+        });
       });
       population.slice(population.length - 50, population.length - 40).forEach((instance, j) => {
-        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(150, 100, 100, ${j / 18 - 0.45})`, lineWidth: 35, lineCap: 'round', miterLimit: 100 });
+        plotLineGroup(instance.map((row) => row.pt), ctx, {
+          strokeStyle: `rgba(150, 100, 100, ${j / 18 - 0.45})`,
+          lineWidth: 35,
+          lineCap: 'round',
+          miterLimit: 100
+        });
       });
       population.slice(20, 30).forEach((instance, j) => {
-        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(50, 10, 10, ${j / 10 - 0.5})`, lineWidth: 25, lineCap: 'round', miterLimit: 100 });
+        plotLineGroup(instance.map((row) => row.pt), ctx, {
+          strokeStyle: `rgba(50, 10, 10, ${j / 10 - 0.5})`,
+          lineWidth: 25,
+          lineCap: 'round',
+          miterLimit: 100
+        });
       });
       population.slice(0, 10).forEach((instance, j) => {
-        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(10, 0, 0, ${1 - j / 10})`, lineWidth: 3, lineCap: 'round', miterLimit: 100 });
+        plotLineGroup(instance.map((row) => row.pt), ctx, {
+          strokeStyle: `rgba(10, 0, 0, ${1 - j / 10})`,
+          lineWidth: 3,
+          lineCap: 'round',
+          miterLimit: 100
+        });
       });
 
       label.textContent = ` Fitness: ${Number.parseInt(population[0].totalFitness)}; Generation: ${i}`;
@@ -153,27 +173,6 @@
         return gene;
       });
     });
-    // population.forEach((instance, i) => {
-    //   if (i > population.length - 2) {
-    //     return;
-    //   }
-    //
-    //   const next = population[i + 1];
-    //   instance.forEach((row, j) => {
-    //     // if (j > instance.length / 2) {
-    //     if (j % 2 === 0) {
-    //       population[i][j] = next[j];
-    //     }
-    //
-    //     if (Math.random() > 0.99) {
-    //       population[i][j].distance = (instance[j].distance + 1) % 5000;
-    //     }
-    //
-    //     if (Math.random() > 0.99) {
-    //       population[i][j].angle = (instance[j].angle + 1) % 360;
-    //     }
-    //   });
-    // });
   }
 
   /**
@@ -241,7 +240,7 @@
 
   const ctx = canvas.getContext('2d');
 
-  const Y = [];
+  let Y = [];
   for (let i = 0; i <= 1; i += 0.01) {
     if (i > 0.9) {
       break;
@@ -253,6 +252,62 @@
     };
     Y.push(pt);
   }
+
+  let touchDown = false;
+
+  const setTouch = (val) => (event) => {
+    if (val) {
+      document.body.style.overflow = 'hidden';
+      Y = [];
+      clearTimeout(globalTimer);
+      clearTimeout(stepTimer);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      document.body.style.overflow = 'auto';
+      if (Y.length === 0) {
+        return;
+      }
+
+      const Y2 = Y.reduce((acc, row, i) => {
+        if (i % 2 === 0 || i === Y.length - 1) {
+          acc.push(row);
+        }
+        return acc;
+      }, []);
+
+      start(Y2);
+    }
+    touchDown = val;
+  };
+
+  const onTouchMove = (event) => {
+    if (!touchDown) {
+      return;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    if (!event.clientX && event.touches) {
+      event.clientX = event.touches[0].clientX;
+      event.clientY = event.touches[0].clientY;
+    }
+    Y.push({
+      x: (event.clientX - rect.left) * scaleX,
+      y: (event.clientY - rect.top) * scaleY,
+    });
+
+    plotLineGroup(Y, ctx, { strokeStyle: '#84ccb3', lineWidth: 25, lineCap: 'round', miterLimit: 100 });
+  };
+
+  canvas.addEventListener('touchstart', setTouch(true));
+  canvas.addEventListener('mousedown', setTouch(true));
+  canvas.addEventListener('touchend', setTouch(false));
+  canvas.addEventListener('mouseup', setTouch(false));
+
+  canvas.addEventListener('touchmove', onTouchMove);
+  canvas.addEventListener('mousemove', onTouchMove);
 
   const btnStart = doc.createElement('button');
   btnStart.type = 'button';
