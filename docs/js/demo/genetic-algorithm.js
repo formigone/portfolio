@@ -1,5 +1,6 @@
 (function main(doc, containerId) {
   let globalTimer;
+  let stepTimer;
 
   /**
    *
@@ -60,7 +61,7 @@
    * @param {Array<Array<number, number>>}target
    * @param {number} populationSize
    */
-  function start(target, populationSize = 10000) {
+  function start(target, populationSize = 1000) {
     // let x = 100, y = canvas.height / 2;
     // for (let i = 0; i < 10; i += 1) {
     //   let pt = pointFrom(x, y, pts[i][1], pts[i][0]);
@@ -72,7 +73,7 @@
     //   x = pt.x;
     //   y = pt.y;
     // }
-    const population = initPopulation(populationSize, target.length);
+    let population = initPopulation(populationSize, target.length);
 
     function step(i, total) {
       if (i > total) {
@@ -93,48 +94,103 @@
         return 0;
       });
 
+      const totalFitness = population.reduce((acc, instance) => acc + (1 / instance.totalFitness), 0);
+      const fitnessProbs = population.map((instance) => (1 / instance.totalFitness) / totalFitness);
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       plotLineGroup(Y, ctx, { strokeStyle: '#84ccb3', lineWidth: 25, lineCap: 'round', miterLimit: 100 });
-      population.forEach((instance, j) => {
-        if (j > 20) {
-          return;
-        }
-        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(10, 10, 10, ${1 - j / 20})`, lineWidth: 5, lineCap: 'round', miterLimit: 100 });
+      population.slice(population.length - 20).forEach((instance, j) => {
+        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(150, 120, 120, ${j / 20 - 0.45})`, lineWidth: 45, lineCap: 'round', miterLimit: 100 });
+      });
+      population.slice(population.length - 50, population.length - 40).forEach((instance, j) => {
+        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(150, 100, 100, ${j / 18 - 0.45})`, lineWidth: 35, lineCap: 'round', miterLimit: 100 });
+      });
+      population.slice(20, 30).forEach((instance, j) => {
+        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(50, 10, 10, ${j / 10 - 0.5})`, lineWidth: 25, lineCap: 'round', miterLimit: 100 });
+      });
+      population.slice(0, 10).forEach((instance, j) => {
+        plotLineGroup(instance.map((row) => row.pt), ctx, { strokeStyle: `rgba(10, 0, 0, ${1 - j / 10})`, lineWidth: 3, lineCap: 'round', miterLimit: 100 });
       });
 
-      crossover(population);
-
       label.textContent = ` Fitness: ${Number.parseInt(population[0].totalFitness)}; Generation: ${i}`;
-      setTimeout(() => {
+      population = crossover(population, fitnessProbs);
+
+      stepTimer = setTimeout(() => {
         step(i + 1, total);
       }, 10);
     }
 
-    step(0, 5000);
+    step(0, 25000);
   }
 
-  function crossover(population) {
-    population.forEach((instance, i) => {
-      if (i > population.length - 2) {
-        return;
+  /**
+   *
+   * @param {Array<Object>} population
+   * @param {Array<number>} probs List of probabilities for each instance of the population
+   */
+  function crossover(population, probs) {
+    return population.map(() => {
+      const A = weight_random(population, probs);
+      let B = A;
+      while (A === B) {
+        B = weight_random(population, probs);
       }
 
-      const next = population[i + 1];
-      instance.forEach((row, j) => {
-        // if (j > instance.length / 2) {
-        if (j % 2 === 0) {
-          population[i][j] = next[j];
+      return A.map((row, i) => {
+        let gene = Object.assign({}, row);
+        if (i % 2 === 0) {
+          gene = Object.assign({}, B[i]);
         }
 
-        if (Math.random() > 0.99) {
-          population[i][j].distance = (instance[j].distance + 1) % 5000;
+        if (Math.random() > 0.985) {
+          gene.distance = Number.parseInt(Math.random() * 600 - 300);
         }
 
-        if (Math.random() > 0.99) {
-          population[i][j].angle = (instance[j].angle + 1) % 360;
+        if (Math.random() > 0.985) {
+          gene.angle = Number.parseInt(Math.random() * 350);
         }
+
+        return gene;
       });
     });
+    // population.forEach((instance, i) => {
+    //   if (i > population.length - 2) {
+    //     return;
+    //   }
+    //
+    //   const next = population[i + 1];
+    //   instance.forEach((row, j) => {
+    //     // if (j > instance.length / 2) {
+    //     if (j % 2 === 0) {
+    //       population[i][j] = next[j];
+    //     }
+    //
+    //     if (Math.random() > 0.99) {
+    //       population[i][j].distance = (instance[j].distance + 1) % 5000;
+    //     }
+    //
+    //     if (Math.random() > 0.99) {
+    //       population[i][j].angle = (instance[j].angle + 1) % 360;
+    //     }
+    //   });
+    // });
+  }
+
+  /**
+   * Returns a value from `values` with a probability of values[n] := probs[n]
+   * @param {Array<number>} values
+   * @param {Array<number>} probs
+   * @returns {number}
+   */
+  function weight_random(values, probs) {
+    console.assert(values.length === probs.length);
+    let rnd = Math.random();
+    let i = 0;
+    while (rnd >= 0 && i < values.length) {
+      rnd -= probs[i];
+      i += 1;
+    }
+    return values[i - 1];
   }
 
   function fit(population, target) {
@@ -164,8 +220,8 @@
   function initPopulation(populationSize, instanceSize) {
     return Array.apply(null, new Array(populationSize)).map(() => {
       return Array.apply(null, new Array(instanceSize)).map(() => ({
-        distance: Number.parseInt(Math.random() * 150 - 75),
-        angle: Number.parseInt(Math.random() * 180 - 90),
+        distance: Number.parseInt(Math.random() * 600 - 300),
+        angle: Number.parseInt(Math.random() * 360),
         fitness: null,
       }));
     });
@@ -198,19 +254,31 @@
     Y.push(pt);
   }
 
-  const btn = doc.createElement('button');
-  btn.type = 'button';
-  btn.style.background = '#ddd';
-  btn.style.padding = '0.5em';
-  btn.style.margin = '0 0 1em';
-  btn.textContent = 'Start';
+  const btnStart = doc.createElement('button');
+  btnStart.type = 'button';
+  btnStart.style.background = '#ddd';
+  btnStart.style.padding = '0.5em';
+  btnStart.style.margin = '0 0 1em';
+  btnStart.textContent = 'Start';
 
-  btn.addEventListener('click', () => {
+  const btnStop = doc.createElement('button');
+  btnStop.type = 'button';
+  btnStop.style.background = '#ddd';
+  btnStop.style.padding = '0.5em';
+  btnStop.style.margin = '0 0 1em';
+  btnStop.textContent = 'Stop';
+
+  btnStop.addEventListener('click', () => {
     clearTimeout(globalTimer);
+    clearTimeout(stepTimer);
+  });
+  btnStart.addEventListener('click', () => {
+    clearTimeout(globalTimer);
+    clearTimeout(stepTimer);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     plotLine(0, Y, ctx, { strokeStyle: '#84ccb3', lineWidth: 25, lineCap: 'round', miterLimit: 100 }, () => {
       const Y2 = Y.reduce((acc, row, i) => {
-        if (i % 3 == 0 || i == Y.length - 1) {
+        if (i % 3 === 0 || i === Y.length - 1) {
           acc.push(row);
         }
         return acc;
@@ -222,7 +290,8 @@
 
   const label = doc.createElement('span');
 
-  container.appendChild(btn);
+  container.appendChild(btnStart);
+  container.appendChild(btnStop);
   container.appendChild(label);
   container.appendChild(canvas);
 }(document, 'demoContainer'));
