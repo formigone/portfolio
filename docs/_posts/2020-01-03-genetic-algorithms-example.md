@@ -2,6 +2,10 @@
 title: Genetic Algorithm Example
 author_staff_member: 
 show_comments: true
+soc_img:
+  src: /images/posts/Genetic_Algorithm_Example.jpg
+  width: 1800
+  height: 1029
 ---
 
 In this toy demonstration of genetic algorithms, the algorithm learns some arbitrary 2D function. The "chromosome" is represented by a sequence of <distance, angle> pairs. By rendering the first point at some location, we can render the next point in the sequence by computing the <x, y> coordinates relative to that first point by using the distance and angle for the current gene.
