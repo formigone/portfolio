@@ -2,5 +2,10 @@
 {% include post-title.html post=post %}
 <div class="post-content">
 	{{ include.post.excerpt }}
+	{% if post.soc_img %}
+	<p>
+		<a href="{{ site.baseurl }}{{ include.post.url }}"><img src="{{ post.soc_img.src }}" ></a>
+	</p>
+	{% endif %}
 	<p><a href="{{ site.baseurl }}{{ include.post.url }}">Read More &rarr;</a></p>
 </div>

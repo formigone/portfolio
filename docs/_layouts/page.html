@@ -7,6 +7,9 @@ layout: default
 			<h2>{{ page.heading }}</h2>
 		{% elsif page.title %}
 			<h2>{{ page.title }}</h2>
+			{% if page.soc_img %}
+			<img src="{{ page.soc_img.src }}" style="display:none" />
+			{% endif %}
 		{% endif %}
 		{% if page.subtitle %}
 			<p class="subtext">{{ page.subtitle }}</p>

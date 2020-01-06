@@ -1,5 +1,6 @@
 ---
 title: Genetic Algorithm Example
+subtitle: A slightly artsy demo of a genetic algorithm learning a non-linear function.
 author_staff_member: 
 show_comments: true
 soc_img:
@@ -8,7 +9,9 @@ soc_img:
   height: 1029
 ---
 
-In this toy demonstration of genetic algorithms, the algorithm learns some arbitrary 2D function. The "chromosome" is represented by a sequence of <distance, angle> pairs. By rendering the first point at some location, we can render the next point in the sequence by computing the <x, y> coordinates relative to that first point by using the distance and angle for the current gene.
+In this toy demonstration of genetic algorithms, the algorithm learns some arbitrary 2D function. The "chromosome" is represented by a sequence of <code><distance, angle></code> pairs. By rendering the first point at some location, we can render the next point in the sequence by computing the <code><x, y></code> coordinates relative to that first point by using the distance and angle for the current gene.
+
+My motivation for this demo was to apply what I've been learning about genetic algorithms (in the context of reinforcement learning and optimizing/training deep learning models), but in a slightly less contrived application as most demos I'm seeing online. Typically, folks will demonstrate how to learn a single value (such as the pixels that compose an image or a cardinal direction to navigate a maze). The following example has two variables (angle and distance) and a minor ordering dependency. That is, if the first gene is bad, the second (and all subsequent ones) will likely not perform well.
 
 The fitness function for the entire instance is the sum of the Euclidean distance of each corresponding point to the base function.
 
