@@ -298,8 +298,19 @@ function main() {
         render(0);
     }, false);
 
-    document.getElementById("ctrls").appendChild(btnThunder);
-    document.getElementById("ctrls").appendChild(btnRun);
+    var btnStart = document.createElement("button");
+    btnStart.textContent = "Start";
+    btnStart.addEventListener("click", function () {
+        soundFX.rain.volume = 0.5;
+        soundFX.rain.play();
+        btnStart.disabled = true;
+
+        document.getElementById("ctrls").appendChild(btnThunder);
+        document.getElementById("ctrls").appendChild(btnRun);
+        render(0);
+    }, false);
+
+    document.getElementById("ctrls").appendChild(btnStart);
     document.getElementById("demo").appendChild(canvas2);
     document.getElementById("demo").appendChild(canvas);
 
@@ -343,6 +354,10 @@ function main() {
     }
 
     function render(time) {
+        if (!isPaused) {
+            requestAnimationFrame(render);
+        }
+
         if (time - lastTime >= freq) {
             ctx2.bindCustomShader(getAppropriateShaderProgram(Layers.BACKGROUND));
             renderBackground(time);
@@ -350,16 +365,9 @@ function main() {
             ctx.bindCustomShader(getAppropriateShaderProgram(Layers.FOREGROUND));
             renderForeground(time);
         }
-
-        if (!isPaused) {
-            requestAnimationFrame(render);
-        }
     }
 
-    soundFX.rain.volume = 0.5;
-    soundFX.rain.play();
-
-    render(0);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 main();

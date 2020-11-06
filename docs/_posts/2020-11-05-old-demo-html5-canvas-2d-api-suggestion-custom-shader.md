@@ -1,5 +1,5 @@
 ---
-title: HTML5 Canvas 2D API Suggestion: Custom Shader (old demo)
+title: HTML5 Canvas 2D Custom Shader - Old Demo
 subtitle: This is an old demo I made in 2013.
 author_staff_member: 
 show_comments: true

@@ -35,4 +35,9 @@ Things I needed to do to get this thing to run (November, 2020):
  * Use Ruby 2.7
  * Follow instructions here https://jekyllrb.com/docs/installation/macos/
  * Follow instructions here https://www.digitalocean.com/community/tutorials/how-to-set-up-a-jekyll-development-site-on-ubuntu-16-04
+```
+# Namely, run:
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
+```
  * From `/docs` directory, `jekyll serve`
