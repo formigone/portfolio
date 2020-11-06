@@ -24,3 +24,15 @@ bundle install
 ```
 bundle exec jekyll serve
 ```
+
+## Fighting Ruby, Jekyll, and my faulty memory
+
+Things I needed to do to get this thing to run (November, 2020):
+
+ * Use RVM
+    * curl -sSL https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer | bash -s stable
+    * See https://stackoverflow.com/a/38194139/774907
+ * Use Ruby 2.7
+ * Follow instructions here https://jekyllrb.com/docs/installation/macos/
+ * Follow instructions here https://www.digitalocean.com/community/tutorials/how-to-set-up-a-jekyll-development-site-on-ubuntu-16-04
+ * From `/docs` directory, `jekyll serve`
