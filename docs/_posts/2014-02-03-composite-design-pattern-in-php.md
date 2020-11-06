@@ -9,7 +9,7 @@ soc_img:
   height: 1029
 ---
 
-This is proof that I was one of the cool developers who not only used jQuery, but I was [on my way to becoming] a jQuery master.
+Yet another explanation of some design pattern. I'm posting this almost 7 years after I first wrote this. Hopefully it helps you on your homework or on that job interview you're preparing for :)
 
 # About this post
 
