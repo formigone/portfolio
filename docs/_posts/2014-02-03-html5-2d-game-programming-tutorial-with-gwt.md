@@ -1,8 +1,23 @@
 ---
-layout: post
 title: HTML5 2D Game Programming Tutorial with GWT
-author: Rodrigo Silveira
+subtitle: This is an old demo I made in 2013.
+author_staff_member: 
+show_comments: true
+soc_img:
+  src: /images/posts/html5-super-mario-brother-map.png
+  width: 1800
+  height: 1029
 ---
+
+This is proof that I was one of the cool developers who grew up, graduated from jQuery, and stepped up their game using Google Web Toolkit (back when it was a Google project and the world was still purple and gray).
+
+# About this post
+
+As mentioned in other posts... last night (November 4, 2020) I was showing my 7 year old daughter what Twitter is. I decided to show her some of the weird stuff I'd posted over the years. One of the posts was a link to an old demo I had posted on an old version of this blog. I clicked on the link, only to realize I'd removed all my old blog posts not related to my current pursuit of AI and Machine Learning. My daughter told me that I "should never delete stuff, because then people would never know what I had to say or show them."
+
+That 7 year old wisdom was enough motivation for me to dig through my Github account and find the code for that and other demos, which is what you'll find below.
+
+# The original content
 
 Lately I’ve been playing around with GWT (<a href="https://developers.google.com/web-toolkit/">Google Web Toolkit</a>) and HTML5 game development. My first goal at this point is to get a 2D tile-based game working, and my first sub-goal for that is to be able to load a map on a 2D canvas context. So far, this is what I have:
 

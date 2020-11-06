@@ -1,5 +1,5 @@
 ---
-title: HTML5 Canvas 2D Custom Shader - Old Demo
+title: HTML5 Canvas 2D Custom Shader
 subtitle: This is an old demo I made in 2013.
 author_staff_member: 
 show_comments: true
@@ -8,6 +8,16 @@ soc_img:
   width: 1800
   height: 1029
 ---
+
+An interactive demo showing what the Canvas 2D API could be like if WebGL specific features could be exposed to the user (so the user could use WebGL without Canvas 3D). Yes, I once thought this would be a good idea :)
+
+# About this post
+
+As mentioned in other posts... last night (November 4, 2020) I was showing my 7 year old daughter what Twitter is. I decided to show her some of the weird stuff I'd posted over the years. One of the posts was a link to an old demo I had posted on an old version of this blog. I clicked on the link, only to realize I'd removed all my old blog posts not related to my current pursuit of AI and Machine Learning. My daughter told me that I "should never delete stuff, because then people would never know what I had to say or show them."
+
+That 7 year old wisdom was enough motivation for me to dig through my Github account and find the code for that and other demos, which is what you'll find below.
+
+# The original content
 
 Once upon a time, I was misguided enough that I wanted to write a game in JavaScript from scratch. Why bother learning a full-featured, stable game engine/framework, if I could just build everything myself?! As part of this journey (which "only" lasted about 6 months), I thought it'd be nice the HTML5 Canvas 2D API exposed a way to allow a client to control the rendering of the canvas via the very specific implementation of WebGL Shaders. This was all because I didn't want to use WebGL because Canvas 2D was so much simpler.
 

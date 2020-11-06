@@ -1,8 +1,23 @@
 ---
-layout: post
 title: Machine Learning Painting with Linear Regression
-author: Rodrigo Silveira
+subtitle: This is an old demo I made in 2017.
+author_staff_member: 
+show_comments: true
+soc_img:
+  src: /images/posts/Machine_Learning_Painting_with_Linear_Regression.png
+  width: 1800
+  height: 1029
 ---
+
+An interactive demo of using linear regression to minimize a function that "learns" what the values of a matrix of pixels should be so that it forms a photograph.
+
+# About this post
+
+As mentioned in other posts... last night (November 4, 2020) I was showing my 7 year old daughter what Twitter is. I decided to show her some of the weird stuff I'd posted over the years. One of the posts was a link to an old demo I had posted on an old version of this blog. I clicked on the link, only to realize I'd removed all my old blog posts not related to my current pursuit of AI and Machine Learning. My daughter told me that I "should never delete stuff, because then people would never know what I had to say or show them."
+
+That 7 year old wisdom was enough motivation for me to dig through my Github account and find the code for that and other demos, which is what you'll find below.
+
+# The original content
 
 This is my first implementation of a machine learning algorithm in JavaScript. I think linear regression is an appropriate place to start, as the only thing required to get something going is to implement gradient descent. Although the code is not optimized for performance, it demonstrates the underlying concepts of minimizing a cost function in order to learn the parameters that best fit the training data.
 
