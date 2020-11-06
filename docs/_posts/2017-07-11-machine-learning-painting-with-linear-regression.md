@@ -9,7 +9,7 @@ soc_img:
   height: 1029
 ---
 
-An interactive demo of using linear regression to minimize a function that "learns" what the values of a matrix of pixels should be so that it forms a photograph.
+An interactive demo of using linear regression to minimize a function that "learns" what the values of a matrix of pixels should be so that it forms a photograph. This work was very early practice as I was learning the foundations of supervised learning. 
 
 # About this post
 
