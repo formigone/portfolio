@@ -140,7 +140,7 @@
       }, 10);
     }
 
-    step(0, 25000);
+    step(0, Number.MAX_SAFE_INTEGER - 100);
   }
 
   /**
