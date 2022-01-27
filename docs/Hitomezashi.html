@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #ddd;
+        }
+
+        canvas {
+            margin: 0;
+            padding: 0;
+            display: block;
+            image-rendering: crisp-edges;
+        }
+    </style>
+</head>
+<body>
+<div id="canvas"></div>
+<script>
+  (function main(containerId) {
+    let ptHor = window.innerWidth / 12;
+    let ptVer = window.innerHeight / 12;
+    const lineWidth = 1;
+    const canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    let rows = [];
+    let cols = [];
+
+    async function render() {
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const hs = canvas.width / ptHor;
+      const vs = canvas.height / ptVer;
+      console.log(hs, vs);
+      ctx.fillStyle = '#aaa';
+      for (let y = 0; y < ptVer; y++) {
+        for (let x = 0; x < ptHor; x++) {
+          ctx.fillRect(x * hs, y * vs, rows[y] ? (x % 2 === 0 ? lineWidth : vs) : (x % 2 !== 0 ? lineWidth : vs), lineWidth);
+          ctx.fillRect(x * hs, y * vs, lineWidth, cols[x] ? (y % 2 === 0 ? lineWidth : hs) : (y % 2 !== 0 ? lineWidth : hs));
+        }
+      }
+    }
+
+    let size = 12;
+    let sizeDir = 0.05;
+
+    async function updateState() {
+      for (let x = 0; x < ptHor; x++) {
+        cols[x] = Math.random() > 0.5;
+      }
+      for (let y = 0; y < ptVer; y++) {
+        rows[y] = Math.random() > 0.75;
+      }
+
+      render();
+    }
+
+    let next = 0;
+    let inner = 0;
+    canvas.addEventListener('click', () => {
+      clearTimeout(next);
+      clearTimeout(inner);
+      next = setTimeout(async () => {
+        for (let i = 0; i < 15; i++) {
+          size += sizeDir;
+          ptHor = window.innerWidth / size;
+          ptVer = window.innerHeight / size;
+          cols = [];
+          rows = [];
+          updateState();
+          if (size > 25) {
+            sizeDir = -0.05;
+          } else if (size < 10) {
+            sizeDir = 1.05;
+          }
+          await new Promise((r) => {
+            inner = setTimeout(() => r(), 25);
+          });
+        }
+      }, 50);
+    });
+
+    updateState();
+    render();
+
+    document.getElementById(containerId).appendChild(canvas);
+  }('canvas'));
+</script>
+
+</body>
+</html>
