@@ -16,6 +16,7 @@ The implementation below has a fixed probability of 0.5 for column starting on, 
 <style>
   #demoContainer canvas {
   image-rendering: pixelated;
+  cursor: pointer;
   }
 </style>
 <div id="demoContainer" style="overflow: hidden; box-shadow: 0 0 10px #ccc; margin: 0 0 2em; height: 60vh;"></div>
