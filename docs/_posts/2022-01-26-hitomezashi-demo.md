@@ -14,7 +14,7 @@ The other day I came across the concept of Hitomezashi stitch patterns from a [N
 <div id="demoContainer" style="overflow: hidden; box-shadow: 0 0 10px #ccc; margin: 0 0 2em; height: 60vh;"></div>
 <script src="/js/demo/hitomezashi.js"></script>
 
-<h4>(hint on the pattern above)</h4>
+<h4>(click on the pattern above)</h4>
 
 Seems that the more that the probability diverges from 0.5, the more individual squares emerge.
 
