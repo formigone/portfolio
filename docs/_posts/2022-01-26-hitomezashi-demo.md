@@ -23,6 +23,7 @@ Seems that the more that the probability diverges from 0.5, the more individual 
 Next steps for things to experiment with:
 
  * Add flodding and attempt to imperically convince myself that the assumption stated in the video is correct - namely, that it will always take two colors to fill the board.
+ * What are all of the individual patterns that can be made?
  * How does symmetry about both axes influence the pattern?
  * What patterns emerge when every point starts off, and only every `n` point starts on (for different values of `n`).
  * Finally, for the ultimate time sync: initialize Conway's Game of Life boards with Hitomezashi pattern.
