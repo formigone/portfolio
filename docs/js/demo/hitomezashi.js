@@ -9,6 +9,8 @@
 
   let rows = [];
   let cols = [];
+  let pts = [];
+  let init = false;
 
   async function render() {
     ctx.fillStyle = '#fff';
