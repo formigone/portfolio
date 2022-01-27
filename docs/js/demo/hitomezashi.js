@@ -16,14 +16,30 @@
 
     const hs = canvas.width / ptHor;
     const vs = canvas.height / ptVer;
-    console.log(hs, vs);
     ctx.fillStyle = '#aaa';
-    for (let y = 0; y < ptVer; y++) {
-      for (let x = 0; x < ptHor; x++) {
-        ctx.fillRect(x * hs, y * vs, rows[y] ? (x % 2 === 0 ? lineWidth : vs) : (x % 2 !== 0 ? lineWidth : vs), lineWidth);
-        ctx.fillRect(x * hs, y * vs, lineWidth, cols[x] ? (y % 2 === 0 ? lineWidth : hs) : (y % 2 !== 0 ? lineWidth : hs));
+
+      if (init) {
+        for (let y = 0; y < ptVer; y++) {
+          for (let x = 0; x < ptHor; x++) {
+            ctx.fillRect(x * hs, y * vs, rows[y] ? (x % 2 === 0 ? lineWidth : vs) : (x % 2 !== 0 ? lineWidth : vs), lineWidth);
+            ctx.fillRect(x * hs, y * vs, lineWidth, cols[x] ? (y % 2 === 0 ? lineWidth : hs) : (y % 2 !== 0 ? lineWidth : hs));
+          }
+        }
+      } else {
+          let x, y;
+          for (let i = 0; i < pts.length; i++) {
+            [x, y] = pts[i];
+            ctx.fillRect(x * hs, y * vs, rows[y] ? (x % 2 === 0 ? lineWidth : vs) : (x % 2 !== 0 ? lineWidth : vs), lineWidth);
+            ctx.fillRect(x * hs, y * vs, lineWidth, cols[x] ? (y % 2 === 0 ? lineWidth : hs) : (y % 2 !== 0 ? lineWidth : hs));
+            if (i % 256 === 0) {
+              await new Promise((r) => {
+                setTimeout(r, 1);
+              });
+            }
+          }
+          init = true;
       }
-    }
+  
   }
 
   let size = 12;
@@ -33,10 +49,20 @@
     for (let x = 0; x < ptHor; x++) {
       cols[x] = Math.random() > 0.5;
     }
+    
     for (let y = 0; y < ptVer; y++) {
       rows[y] = Math.random() > 0.75;
     }
-
+    
+    if (!init) {
+      pts = [];
+      for (let y = 0; y < ptVer; y++) {
+        for (let x = 0; x < ptHor; x++) {
+          pts.push([x, y]);
+        }
+      }
+      shuffle(pts);
+    }
     render();
   }
 
@@ -67,6 +93,24 @@
 
   updateState();
   render();
+
+    function shuffle(array) {
+      let currentIndex = array.length, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (currentIndex !== 0) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+
+      return array;
+    }
 
   document.getElementById(containerId).appendChild(canvas);
 }('demoContainer'));
