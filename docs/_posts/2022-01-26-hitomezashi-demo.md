@@ -11,6 +11,8 @@ soc_img:
 
 The other day I came across the concept of Hitomezashi stitch patterns from a [Numberphile video](https://www.youtube.com/watch?v=JbfhzlMk2eY) on the subject. Before the video was over, I realized I had to code that up and see for myself how the probability for a point starting on/off would influence the pattern.
 
+The implementation below has a fixed probability of 0.5 for column starting on, and 0.75 for a row starting on.
+
 <div id="demoContainer" style="overflow: hidden; box-shadow: 0 0 10px #ccc; margin: 0 0 2em; height: 60vh;"></div>
 <script src="/js/demo/hitomezashi.js"></script>
 
