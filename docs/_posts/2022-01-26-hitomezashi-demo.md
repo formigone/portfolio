@@ -13,10 +13,15 @@ The other day I came across the concept of Hitomezashi stitch patterns from a [N
 
 The implementation below has a fixed probability of 0.5 for column starting on, and 0.75 for a row starting on.
 
+<style>
+  #demoContainer canvas {
+  image-rendering: pixelated;
+  }
+</style>
 <div id="demoContainer" style="overflow: hidden; box-shadow: 0 0 10px #ccc; margin: 0 0 2em; height: 60vh;"></div>
 <script src="/js/demo/hitomezashi.js"></script>
 
-<h4>(click on the pattern above)</h4>
+#### (click on the pattern above)
 
 Seems that the more that the probability diverges from 0.5, the more individual squares emerge.
 
@@ -27,3 +32,19 @@ Next steps for things to experiment with:
  * How does symmetry about both axes influence the pattern?
  * What patterns emerge when every point starts off, and only every `n` point starts on (for different values of `n`).
  * Finally, for the ultimate time sync: initialize Conway's Game of Life boards with Hitomezashi pattern.
+
+## Flooding algorithm
+
+Since I have not yet done any research on efficient flooding algorithms (I'm not exaclty sure if this is the correct term), I'm posting my research here to simplify the upcoming writeup on how it works.
+
+The initial objective is simple: given the above grid (or a subsection of it, as shown below), color an entire white section until it hits a wall.
+
+![Hitomezashi patch](/images/demo/hitomezashi-patch.png)
+![Hitomezashi patch partially flooded](/images/demo/hitomezashi-patch-filled-once.png)
+![Hitomezashi patch completely flooded](/images/demo/hitomezashi-patch-filled-all.png)
+
+After being able to flood a single section, the goal is to fill every other section (no two adjacent section must have the same color).
+
+The pixel data for the patch above can be (found here)[js/demo/hitomezashi.json]. That file is formatted like the (JavaScript ImageData)[https://developer.mozilla.org/en-US/docs/Web/API/ImageData]{:target="_blank"}. That is, within the payload, the attribute `$.data` represents
+
+> ...a one-dimensional array containing the data in the RGBA order, with integer values between 0 and 255 (inclusive).
