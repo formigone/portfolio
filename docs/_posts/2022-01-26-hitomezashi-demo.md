@@ -4,7 +4,7 @@ subtitle: A simple JavaScript implementation of randomly generated Hitomezashi p
 author_staff_member: 
 show_comments: true
 soc_img:
-  src: /images/demo/hitomezashi-demo.png.png
+  src: /images/demo/hitomezashi-demo.png
   width: 3838
   height: 2240
 ---
