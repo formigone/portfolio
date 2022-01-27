@@ -1,6 +1,6 @@
 ---
 title: Hitomezashi Stitch Patterns in HTML Canvas
-subtitle: A simple JavaScript implementation of randomly generated Hitomezashi patterns inspired by the Numberphile video on it.
+subtitle: A simple JavaScript implementation of randomly generated Hitomezashi patterns inspired by the Numberphile video.
 author_staff_member: 
 show_comments: true
 soc_img:
@@ -11,8 +11,10 @@ soc_img:
 
 The other day I came across the concept of Hitomezashi stitch patterns from a [Numberphile video](https://www.youtube.com/watch?v=JbfhzlMk2eY) on the subject. Before the video was over, I realized I had to code that up and see for myself how the probability for a point starting on/off would influence the pattern.
 
-<div id="demoContainer" style="overflow: hidden; box-shadow: 0 0 10px #ccc; margin: 0 0 2em;"></div>
+<div id="demoContainer" style="overflow: hidden; box-shadow: 0 0 10px #ccc; margin: 0 0 2em; height: 60vh;"></div>
 <script src="/js/demo/hitomezashi.js"></script>
+
+<h4>(hint on the pattern above)</h4>
 
 Seems that the more that the probability diverges from 0.5, the more individual squares emerge.
 
