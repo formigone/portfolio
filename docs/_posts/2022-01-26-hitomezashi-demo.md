@@ -32,7 +32,7 @@ Next steps for things to experiment with:
  * What are all of the individual patterns that can be made?
  * How does symmetry about both axes influence the pattern?
  * What patterns emerge when every point starts off, and only every `n` point starts on (for different values of `n`).
- * Finally, for the ultimate time sync: initialize Conway's Game of Life boards with Hitomezashi pattern.
+ * Finally, for the ultimate time sink: initialize Conway's Game of Life boards with Hitomezashi pattern.
 
 ## Flooding algorithm
 
