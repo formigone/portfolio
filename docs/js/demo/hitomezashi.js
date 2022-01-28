@@ -114,7 +114,7 @@
       return array;
     }
   
-  function render(data, ctx) {
+  function renderRaw(data, ctx) {
       ctx.putImageData(new ImageData(new Uint8ClampedArray(data.data), canvas.width), 0, 0);
     }
 
@@ -169,6 +169,7 @@
     
     const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
     fill(data.data, 4, 0, 250, 255, data.width, data.height);
+    renderRaw(data, ctx);
   }, 5000);
 
   document.getElementById(containerId).appendChild(canvas);
