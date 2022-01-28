@@ -125,22 +125,24 @@
     }
 
     let CT = 0;
-    const CACHE = {}
+    const CACHE = {};
+    let renderTimer = 0;
+    let iterTimer = 0;
 
     function fill(data, x, y, newVal, oldVal, width, height) {
       const cacheKey = `${x},${y}`;
+      
+      clearTimeout(renderTimer);
+      clearTimeout(iterTimer);
+
+      renderTimer = setTimeout(() => {
+        render({ data }, ctx);
+      }, 10);
+      
       if (CACHE[cacheKey]) {
         return;
       }
 
-      if (CT >= 10) {
-        setTimeout(() => {
-          CT = 0;
-          render({ data }, ctx);
-          fill(data, x, y, newVal, oldVal, width, height);
-        }, 50);
-        return
-      }
       CACHE[cacheKey] = true;
       CT += 1;
 
@@ -166,10 +168,12 @@
       data[y * width * 4 + x * 4 + 1] = 10;
       data[y * width * 4 + x * 4 + 2] = 10;
 
-      fill(data, x - 1, y, newVal, oldVal, width, height);
-      fill(data, x + 1, y, newVal, oldVal, width, height);
-      fill(data, x, y - 1, newVal, oldVal, width, height);
-      fill(data, x, y + 1, newVal, oldVal, width, height);
+      iterTimer = setTimeout(() => {
+        fill(data, x - 1, y, newVal, oldVal, width, height);
+        fill(data, x + 1, y, newVal, oldVal, width, height);
+        fill(data, x, y - 1, newVal, oldVal, width, height);
+        fill(data, x, y + 1, newVal, oldVal, width, height);
+      }, 0);
     }
   
   setTimeout(() => {
