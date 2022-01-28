@@ -11,6 +11,7 @@
   let cols = [];
   let pts = [];
   let init = false;
+  let clicked = false;
 
   async function render() {
     ctx.fillStyle = '#fff';
@@ -71,6 +72,7 @@
   let next = 0;
   let inner = 0;
   canvas.addEventListener('click', () => {
+    clicked = true;
     clearTimeout(next);
     clearTimeout(inner);
     next = setTimeout(async () => {
@@ -163,12 +165,13 @@
     }
   
   setTimeout(() => {
-    if (init) {
+    if (clicked) {
       return;
     }
     
     const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    fill(data.data, 4, 0, 250, 255, data.width, data.height);
+    fill(data.data, 4, 4, 250, 255, data.width, data.height);
+    console.log('Flooded', CT);
     renderRaw(data, ctx);
   }, 5000);
 
