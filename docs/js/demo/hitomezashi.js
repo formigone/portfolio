@@ -21,28 +21,28 @@
     const vs = canvas.height / ptVer;
     ctx.fillStyle = '#aaa';
 
-      if (init) {
-        for (let y = 0; y < ptVer; y++) {
-          for (let x = 0; x < ptHor; x++) {
-            ctx.fillRect(x * hs, y * vs, rows[y] ? (x % 2 === 0 ? lineWidth : vs) : (x % 2 !== 0 ? lineWidth : vs), lineWidth);
-            ctx.fillRect(x * hs, y * vs, lineWidth, cols[x] ? (y % 2 === 0 ? lineWidth : hs) : (y % 2 !== 0 ? lineWidth : hs));
-          }
+    if (init) {
+      for (let y = 0; y < ptVer; y++) {
+        for (let x = 0; x < ptHor; x++) {
+          ctx.fillRect(x * hs, y * vs, rows[y] ? (x % 2 === 0 ? lineWidth : vs) : (x % 2 !== 0 ? lineWidth : vs), lineWidth);
+          ctx.fillRect(x * hs, y * vs, lineWidth, cols[x] ? (y % 2 === 0 ? lineWidth : hs) : (y % 2 !== 0 ? lineWidth : hs));
         }
-      } else {
-          let x, y;
-          for (let i = 0; i < pts.length; i++) {
-            [x, y] = pts[i];
-            ctx.fillRect(x * hs, y * vs, rows[y] ? (x % 2 === 0 ? lineWidth : vs) : (x % 2 !== 0 ? lineWidth : vs), lineWidth);
-            ctx.fillRect(x * hs, y * vs, lineWidth, cols[x] ? (y % 2 === 0 ? lineWidth : hs) : (y % 2 !== 0 ? lineWidth : hs));
-            if (i % 256 === 0) {
-              await new Promise((r) => {
-                setTimeout(r, 1);
-              });
-            }
-          }
-          init = true;
       }
-  
+    } else {
+      let x, y;
+      for (let i = 0; i < pts.length; i++) {
+        [x, y] = pts[i];
+        ctx.fillRect(x * hs, y * vs, rows[y] ? (x % 2 === 0 ? lineWidth : vs) : (x % 2 !== 0 ? lineWidth : vs), lineWidth);
+        ctx.fillRect(x * hs, y * vs, lineWidth, cols[x] ? (y % 2 === 0 ? lineWidth : hs) : (y % 2 !== 0 ? lineWidth : hs));
+        if (i % 256 === 0) {
+          await new Promise((r) => {
+            setTimeout(r, 1);
+          });
+        }
+      }
+      init = true;
+    }
+
   }
 
   let size = 12;
@@ -52,11 +52,11 @@
     for (let x = 0; x < ptHor; x++) {
       cols[x] = Math.random() > 0.5;
     }
-    
+
     for (let y = 0; y < ptVer; y++) {
       rows[y] = Math.random() > 0.75;
     }
-    
+
     if (!init) {
       pts = [];
       for (let y = 0; y < ptVer; y++) {
@@ -98,93 +98,97 @@
   updateState();
   render();
 
-    function shuffle(array) {
-      let currentIndex = array.length, randomIndex;
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
 
-      // While there remain elements to shuffle...
-      while (currentIndex !== 0) {
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
 
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
 
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
-      }
-
-      return array;
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
     }
-  
+
+    return array;
+  }
+
   function renderRaw(data, ctx) {
-      ctx.putImageData(new ImageData(new Uint8ClampedArray(data.data), canvas.width), 0, 0);
+    ctx.putImageData(new ImageData(new Uint8ClampedArray(data.data), canvas.width), 0, 0);
+  }
+
+  function getVal(data, x, y, width, height) {
+    return data[y * width * 4 + x * 4];
+  }
+
+  let CT = 0;
+  const CACHE = {};
+  let renderTimer = 0;
+  let iterTimer = 0;
+
+  function fill(data, x, y, newVal, oldVal, width, height) {
+    const cacheKey = `${x},${y}`;
+
+    if (CT % 100 === 0) {
+        renderTimer = setTimeout(() => {
+          renderRaw({ data }, ctx);
+        }, 10);
     }
 
-    function getVal(data, x, y, width, height) {
-      return data[y * width * 4 + x * 4];
+    if (CACHE[cacheKey]) {
+      return;
     }
 
-    let CT = 0;
-    const CACHE = {};
-    let renderTimer = 0;
-    let iterTimer = 0;
+    CACHE[cacheKey] = true;
+    CT += 1;
 
-    function fill(data, x, y, newVal, oldVal, width, height) {
-      const cacheKey = `${x},${y}`;
-      
-      clearTimeout(renderTimer);
+    if (x < 0 || x >= width) {
+      return;
+    }
 
-      renderTimer = setTimeout(() => {
-        render({ data }, ctx);
-      }, 10);
-      
-      if (CACHE[cacheKey]) {
-        return;
-      }
+    if (y < 0 || y >= height) {
+      return;
+    }
 
-      CACHE[cacheKey] = true;
-      CT += 1;
+    const val = getVal(data, x, y, canvas.width, canvas.height);
 
-      if (x < 0 || x >= width) {
-        return;
-      }
+    if (val === newVal) {
+      return;
+    }
 
-      if (y < 0 || y >= height) {
-        return;
-      }
+    if (val !== oldVal) {
+      return;
+    }
 
-      const val = getVal(data, x, y, canvas.width, canvas.height);
+    data[y * width * 4 + x * 4] = newVal;
+    data[y * width * 4 + x * 4 + 1] = 10;
+    data[y * width * 4 + x * 4 + 2] = 10;
 
-      if (val === newVal) {
-        return;
-      }
-
-      if (val !== oldVal) {
-        return;
-      }
-
-      data[y * width * 4 + x * 4] = newVal;
-      data[y * width * 4 + x * 4 + 1] = 10;
-      data[y * width * 4 + x * 4 + 2] = 10;
-
+    clearTimeout(iterTimer);
+    setTimeout(() => {
       iterTimer = setTimeout(() => {
-        fill(data, x - 1, y, newVal, oldVal, width, height);
-        fill(data, x + 1, y, newVal, oldVal, width, height);
-        fill(data, x, y - 1, newVal, oldVal, width, height);
-        fill(data, x, y + 1, newVal, oldVal, width, height);
-      }, 0);
-    }
-  
+        renderRaw({ data }, ctx);
+      }, 10);
+      fill(data, x - 1, y, newVal, oldVal, width, height);
+      fill(data, x + 1, y, newVal, oldVal, width, height);
+      fill(data, x, y - 1, newVal, oldVal, width, height);
+      fill(data, x, y + 1, newVal, oldVal, width, height);
+    }, 0);
+  }
+
   setTimeout(() => {
     if (clicked) {
       return;
     }
-    
+
     const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    fill(data.data, 4, 4, 250, 255, data.width, data.height);
-    console.log('Flooded', CT);
+    console.log(data);
+    fill(data.data, 4, 4, 200, 255, data.width, data.height);
     renderRaw(data, ctx);
-  }, 5000);
+  }, 3000);
 
   document.getElementById(containerId).appendChild(canvas);
 }('demoContainer'));
