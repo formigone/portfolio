@@ -24,6 +24,8 @@ The implementation below has a fixed probability of 0.5 for column starting on, 
 
 #### (click on the pattern above - after the flood fill completes)
 
+Note: flood fill has been artificially slowed down for dramatic effect.
+
 Seems that the more that the probability diverges from 0.5, the more individual squares emerge.
 
 Next steps for things to experiment with:
