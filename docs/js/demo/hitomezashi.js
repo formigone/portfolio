@@ -133,7 +133,6 @@
       const cacheKey = `${x},${y}`;
       
       clearTimeout(renderTimer);
-      clearTimeout(iterTimer);
 
       renderTimer = setTimeout(() => {
         render({ data }, ctx);
