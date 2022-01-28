@@ -46,6 +46,6 @@ The initial objective is simple: given the above grid (or a subsection of it, as
 
 After being able to flood a single section, the goal is to fill every other section (no two adjacent section must have the same color).
 
-The pixel data for the patch above can be (found here)[js/demo/hitomezashi.json]. That file is formatted like the (JavaScript ImageData)[https://developer.mozilla.org/en-US/docs/Web/API/ImageData]{:target="_blank"}. That is, within the payload, the attribute `$.data` represents
+The pixel data for the patch above can be [found here](/js/demo/hitomezashi.json). That file is formatted like the [JavaScript ImageData](https://developer.mozilla.org/en-US/docs/Web/API/ImageData){:target="_blank"}. That is, within the payload, the attribute `$.data` represents
 
 > ...a one-dimensional array containing the data in the RGBA order, with integer values between 0 and 255 (inclusive).
