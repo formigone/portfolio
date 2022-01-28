@@ -113,6 +113,63 @@
 
       return array;
     }
+  
+  function render(data, ctx) {
+      ctx.putImageData(new ImageData(new Uint8ClampedArray(data.data), canvas.width), 0, 0);
+    }
+
+    function getVal(data, x, y, width, height) {
+      return data[y * width * 4 + x * 4];
+    }
+
+    let CT = 0;
+    const CACHE = {}
+
+    function fill(data, x, y, newVal, oldVal, width, height) {
+      const cacheKey = `${x},${y}`;
+      if (CACHE[cacheKey]) {
+        return;
+      }
+
+      CACHE[cacheKey] = true;
+      CT += 1;
+
+      if (x < 0 || x >= width) {
+        return;
+      }
+
+      if (y < 0 || y >= height) {
+        return;
+      }
+
+      const val = getVal(data, x, y, canvas.width, canvas.height);
+
+      if (val === newVal) {
+        return;
+      }
+
+      if (val !== oldVal) {
+        return;
+      }
+
+      data[y * width * 4 + x * 4] = newVal;
+      data[y * width * 4 + x * 4 + 1] = 10;
+      data[y * width * 4 + x * 4 + 2] = 10;
+
+      fill(data, x - 1, y, newVal, oldVal, width, height);
+      fill(data, x + 1, y, newVal, oldVal, width, height);
+      fill(data, x, y - 1, newVal, oldVal, width, height);
+      fill(data, x, y + 1, newVal, oldVal, width, height);
+    }
+  
+  setTimeout(() => {
+    if (init) {
+      return;
+    }
+    
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    fill(data.data, 4, 0, 250, 255, data.width, data.height);
+  }, 5000);
 
   document.getElementById(containerId).appendChild(canvas);
 }('demoContainer'));
