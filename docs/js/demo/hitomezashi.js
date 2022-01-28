@@ -133,6 +133,14 @@
         return;
       }
 
+      if (CT >= 10) {
+        setTimeout(() => {
+          CT = 0;
+          render({ data }, ctx);
+          fill(data, x, y, newVal, oldVal, width, height);
+        }, 50);
+        return
+      }
       CACHE[cacheKey] = true;
       CT += 1;
 
