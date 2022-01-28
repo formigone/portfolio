@@ -22,13 +22,13 @@ The implementation below has a fixed probability of 0.5 for column starting on, 
 <div id="demoContainer" style="overflow: hidden; box-shadow: 0 0 10px #ccc; margin: 0 0 2em; height: 60vh;"></div>
 <script src="/js/demo/hitomezashi.js"></script>
 
-#### (click on the pattern above)
+#### (click on the pattern above - after the flood fill completes)
 
 Seems that the more that the probability diverges from 0.5, the more individual squares emerge.
 
 Next steps for things to experiment with:
 
- * Add flodding and attempt to imperically convince myself that the assumption stated in the video is correct - namely, that it will always take two colors to fill the board.
+ * ✅ Add flodding and attempt to imperically convince myself that the assumption stated in the video is correct - namely, that it will always take two colors to fill the board.
  * What are all of the individual patterns that can be made?
  * How does symmetry about both axes influence the pattern?
  * What patterns emerge when every point starts off, and only every `n` point starts on (for different values of `n`).
@@ -49,3 +49,9 @@ After being able to flood a single section, the goal is to fill every other sect
 The pixel data for the patch above can be [found here](/js/demo/hitomezashi.json). That file is formatted like the [JavaScript ImageData](https://developer.mozilla.org/en-US/docs/Web/API/ImageData){:target="_blank"}. That is, within the payload, the attribute `$.data` represents
 
 > ...a one-dimensional array containing the data in the RGBA order, with integer values between 0 and 255 (inclusive).
+
+## Update
+
+Turns out a flood fill algorithm is pretty simple. My current implementation is pretty naive: it uses a recursion (with memoization to avoid processing the same pixel multiple times). The issue is that each iteration calls up to four other recursions, so if the path to be filled is big, it'll throw a `Maximum Call Stack Size Exceeded` exception. The way I'm getting around that for now is by using `setTimeout(recursion, 0)`. This gets me through the night, but clearly not ideal.
+
+Next iteration: use the backtracking algorithm so there won't be any recursion involved.
